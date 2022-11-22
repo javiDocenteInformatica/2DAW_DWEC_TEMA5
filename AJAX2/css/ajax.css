@@ -1,0 +1,68 @@
+main {
+  height: 75vh;
+}
+
+#footerWebgrafia {
+  /* padding & margin */
+  padding: 0.6em;
+  /* margin: 0.3em; */
+  /* bottom: 0; */
+
+  /* fondo */
+  background-color: rgb(69, 68, 68);
+}
+
+#footerWebgrafia h2 {
+  /* padding & margin */
+  /* padding: 0.6em; */
+  margin-top: 0;
+
+  /* texto */
+  /* text-align: center; */
+  color: whitesmoke;
+}
+
+#footerWebgrafia .parent {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  align-items: stretch;
+
+  row-gap: 0.3em;
+  column-gap: 0.3em;
+}
+
+#footerWebgrafia a {
+  text-decoration: none;
+}
+
+#footerWebgrafia .child {
+  /* justify-self: stretch;
+    align-self: stretch; */
+
+  /* padding & margin */
+  padding: 0.6em;
+  /* margin: 0.3em; */
+
+  /* texto */
+  /* text-align: center; */
+  color: whitesmoke;
+
+  /* fondo */
+  background-color: rgb(69, 68, 68);
+
+  /* borde */
+  border: 1px solid rgb(255, 221, 70);
+  border-radius: 0.3em;
+  -webkit-border-radius: 0.3em;
+  -moz-border-radius: 0.3em;
+  -ms-border-radius: 0.3em;
+  -o-border-radius: 0.3em;
+}
+
+#footerWebgrafia .child:hover {
+  color: rgb(69, 68, 68);
+  font-weight: bolder;
+  background-color: rgb(255, 221, 70);
+}

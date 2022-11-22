@@ -4,5 +4,8 @@
         "**/.vscode": true,
         "**/LICENSE": true,
         "**/README.md": true
-    }
+    },
+    "files.autoSave": "afterDelay",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
 }
