@@ -1,2 +1,2 @@
 # TEMA 5 - 2DAW DWEC
- Proyecto "juguete" para probar AJAX
+Código para el TEMA 5 - 2DAW DWEC
