@@ -1,0 +1,63 @@
+hr {
+    height: 0.6em;
+    background-color: chocolate;
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
+ 
+ .alterna_color ol, .alterna_color li {
+    padding: 0.6em;
+  }
+
+ .alterna_color{
+    background-color: rgb(223, 153, 99);
+  }
+
+  .alterna_color li{
+    margin-left: 0.8em;
+  }
+
+  .alterna_color li:nth-child(2n){
+    background-color: rgb(209, 206, 206);
+  }
+
+  .alterna_color li:nth-child(2n+1){
+    background-color: rgb(180, 206, 245);
+  }
+
+
+/* ENLACES */
+
+.alterna_color a:link {
+    text-decoration: none;
+  }
+  
+.alterna_color a:visited {
+  text-decoration: none;
+}
+
+.alterna_color a:hover {
+  text-decoration: underline;
+}
+
+.alterna_color a:active {
+  text-decoration: underline;
+}
+
+
+/* ENLACES MÁS INFORMACIÓN */
+
+.mas_info li{
+  padding: 0.6em;
+  display: inline-block;
+  border: 1px dotted red;
+}
+
+.mas_info li:hover{
+  background-color: aliceblue;  
+}
+.mas_info li:hover a{
+  color: brown;
+}
+
