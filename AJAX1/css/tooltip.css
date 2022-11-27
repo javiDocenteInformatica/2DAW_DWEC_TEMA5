@@ -7,11 +7,11 @@
   /* Tooltip text */
   .tooltip .tooltiptext {
     visibility: hidden;
-    width: 120px;
+    min-width: 120px;
     background-color: #555;
     color: #fff;
     text-align: center;
-    padding: 5px 0;
+    padding: 8px;
     border-radius: 6px;
   
     /* Position the tooltip text */
@@ -19,7 +19,7 @@
     z-index: 1;
     bottom: 125%;
     left: 50%;
-    margin-left: -60px;
+    margin-left: -68px;
   
     /* Fade in tooltip */
     opacity: 0;

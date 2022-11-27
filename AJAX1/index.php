@@ -11,15 +11,17 @@
   <link rel="stylesheet" href="css/style.css"></link>
   <link rel="stylesheet" href="css/tooltip.css">
   <!-- SCRIPTS JS -->
-  <script src="js/webworkers.js"></script>
-  <script src="js/tiempo.js"></script>
-  <script src="js/index.js"></script>
+  <script src="js/utiles.js"></script>
+  <script src="js/ajax.js"></script>
+  
 </head>
 <body class="container-fluid">
 
 <!-- AQUI EL CÓDIGO HTML PRINCIPAL -->
 <hr>
-
+<?php
+    include_once("html/principal.html");
+?>
 <br>
 <!-- <button id="btn_limpiarConsola" onclick="console.clear()" style="margin: 0.6em 0">Limpiar Consola</button> -->
 <br>

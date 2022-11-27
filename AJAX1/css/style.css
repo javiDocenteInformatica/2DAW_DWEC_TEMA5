@@ -4,6 +4,18 @@ hr {
     margin-top: 2em;
     margin-bottom: 2em;
   }
+h1{
+  font-size: 2em !important;
+  color: aliceblue;
+  background-color: rgb(91, 119, 223);
+  padding: 0.3em;
+}
+
+h2{
+  color: aliceblue;
+  background-color: rgb(140, 157, 218);
+  padding: 0.3em;
+}
 
  
  .alterna_color ol, .alterna_color li {
