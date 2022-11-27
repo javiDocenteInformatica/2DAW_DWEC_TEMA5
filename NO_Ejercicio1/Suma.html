@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <title> Suma dos números con AJAX y JQuery </title>
+
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- jQuery librería -->
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+  <script>
+    $(document).on('ready', function () {
+      console.log("cargado");
+      $('#btnSuma').click(function () {
+        var url = "suma.php";
+
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: $("#formulario").serialize(),
+          success: function (data) {
+            $('#respSuma').html(data);
+          }
+        });
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+  <img src="img/enunciado1.png" alt="Imagen de enunciado del ejercicio 1">
+  <br>
+  <img src="img/enunciado1_2.png" alt="Imagen de enunciado del ejercicio 1_2">
+  <hr>
+  <br>
+  <br>
+
+  <form method="post" id="formulario">
+    Introduzca dos valores para calcular la suma:<br>
+    <input type="number" name="valor1" placeholder="valor1" autofocus />
+    <input type="number" name="valor2" placeholder="valor2" />
+    <input type="button" id="btnSuma" value="Suma" />
+  </form>
+  <br><br>
+  <div id="respSuma"></div>
+
+
+
+  <!-- WEBGRAFÍA -->
+  <br>
+  <hr>
+  <div id="webgrafia"></div>
+  <script>
+    // $(document).on('ready', function () {
+    //   $("#webgrafia").load("webgrafia.html");
+    //   // $.ajax({
+    //   //   url: "webgrafia.html",
+    //   //   success: (codigoHTML) => {
+    //   //     $(codigoHTML).appendTo($("body"));
+    //   //   }
+    //   // });
+    // });    
+  </script>
+
+
+
+</body>
+
+</html>

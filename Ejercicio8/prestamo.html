@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title> Cálculo de la mensualidad de un préstamo </title>
+  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script>
+  $(document).on('ready',function(){
+
+    $('#btnPrestamo').click(function(){
+      var url = "prestamo.php";
+
+      $.ajax({
+         type: "GET",
+         url: url,
+         data: $("#formulario").serialize(),
+         success: function(data)
+         {
+           $('#respPrestamo').html(data);
+         }
+       });
+    });
+  });
+  </script>
+</head>
+<body>
+  <form method="post" id="formulario">
+    Cálculo de la cuota de un préstamo:<br>
+      <input type="number" name="capital" placeholder="capital solicitado" required autofocus/><br>
+      <input type="number" name="interes" placeholder="interés anual" required /><br>
+      <input type="number" name="plazo" placeholder="Plazo (meses)" required /><br>
+      <input type="button" id="btnPrestamo" value="Calcular" />
+  </form>
+  <br><br>
+  Su cuota mensual será de: <span id="respPrestamo"></span> Euros.
+</body>
+</html>

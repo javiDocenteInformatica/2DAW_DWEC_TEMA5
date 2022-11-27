@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title> Login </title>
+  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script>
+  $(document).on('ready',function(){
+
+    $('#btnLogin').click(function(){
+      var url = "login.php";
+
+      $.ajax({
+         type: "GET",
+         url: url,
+         data: $("#formulario").serialize(),
+         success: function(data)
+         {
+           $('#respLogin').html(data);
+         }
+       });
+    });
+  });
+  </script>
+</head>
+<body>
+  <form method="post" id="formulario">
+    Introduzca usuario y password:<br>
+      <input type="text" name="valor1" placeholder="usuario" autofocus/><br>
+      <input type="password" name="valor2" placeholder="password"/><br>
+      <input type="button" id="btnLogin" value="Log In" />
+  </form>
+  <br><br>
+  <div id="respLogin"></div>
+</body>
+</html>

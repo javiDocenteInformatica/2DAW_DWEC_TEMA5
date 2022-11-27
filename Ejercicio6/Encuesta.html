@@ -1,0 +1,73 @@
+<html>
+ <head>
+   <meta charset="utf-8">
+   <script>
+     function getvoto(int) {
+       if (window.XMLHttpRequest) {
+         xmlhttp = new XMLHttpRequest();
+       }
+       xmlhttp.onreadystatechange = function() {
+         if (this.readyState == 4 && this.status == 200) {
+           document.getElementById("encuesta").innerHTML = this.responseText;
+         }
+       };
+       xmlhttp.open("GET", "encuesta_voto.php?voto=" + int, true);
+       xmlhttp.send();
+     }
+   </script>
+ </head>
+ <body>
+   <div id="encuesta">
+     <h3>¿Cual es el equipo mas malo de España?</h3>
+     <form>
+       Real Madrid:
+       <input
+         type="radio"
+         name="voto"
+         value="0"
+         onclick="getvoto(this.value)"
+       />
+       <br />
+       Barcelona:
+       <input
+         type="radio"
+         name="voto"
+         value="1"
+         onclick="getvoto(this.value)"
+       />
+       <br />
+       Atletico de Madrid:
+       <input
+         type="radio"
+         name="voto"
+         value="2"
+         onclick="getvoto(this.value)"
+       />
+       <br />
+       Sevilla:
+       <input
+         type="radio"
+         name="voto"
+         value="3"
+         onclick="getvoto(this.value)"
+       />
+       <br />
+       Málaga:
+       <input
+         type="radio"
+         name="voto"
+         value="4"
+         onclick="getvoto(this.value)"
+       />
+       <br />
+       Estepona:
+       <input
+         type="radio"
+         name="voto"
+         value="5"
+         onclick="getvoto(this.value)"
+       />
+     </form>
+   </div>
+ </body>
+</html>

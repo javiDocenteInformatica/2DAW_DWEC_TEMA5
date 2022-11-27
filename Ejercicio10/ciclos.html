@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title> Ciclos de informática: </title>
+  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script>
+  $(document).on('ready',function(){
+
+    $('#btnCarga').click(function(){
+
+      $.getJSON( "ciclos.json", function( data ) {
+        var items = [];
+        $.each( data, function( key, val ) {
+          items.push( "<li id='" + key + "'>"+ key + " - " + val + "</li>" );
+        });
+
+        $( "<ul/>", {
+          "class": "ciclos",
+          html: items.join( "" )
+        }).appendTo( "#ciclos" );
+      });
+    });
+  });
+  </script>
+</head>
+<body>
+  <form method="post" id="formulario">
+    Cargando los datos de ciclos:<br>
+      <input type="button" id="btnCarga" value="Pulse para Cargar" />
+  </form>
+  <br><br>
+  Ciclos de informática:<br>
+  <div id="ciclos"></div>
+</body>
+</html>

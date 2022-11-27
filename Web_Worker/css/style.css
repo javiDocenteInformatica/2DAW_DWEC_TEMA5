@@ -1,0 +1,43 @@
+hr {
+    height: 0.6em;
+    background-color: chocolate;
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
+ .teoria1 ol, .teoria1 li {
+    padding: 0.6em;
+  }
+
+ .teoria1{
+    background-color: rgb(223, 153, 99);
+  }
+
+  .teoria1 li{
+    margin-left: 0.8em;
+  }
+
+  .teoria1 li:nth-child(2n){
+    background-color: rgb(209, 206, 206);
+  }
+
+  .teoria1 li:nth-child(2n+1){
+    background-color: rgb(180, 206, 245);
+  }
+
+/* ENLACES */
+.teoria1 a:link {
+    text-decoration: none;
+  }
+  
+  .teoria1 a:visited {
+    text-decoration: none;
+  }
+  
+  .teoria1 a:hover {
+    text-decoration: underline;
+  }
+  
+  .teoria1 a:active {
+    text-decoration: underline;
+  }
