@@ -1,3 +1,4 @@
+
 hr {
     height: 0.6em;
     background-color: chocolate;
@@ -17,7 +18,14 @@ h2{
   padding: 0.3em;
 }
 
- 
+.cuadro_amarillo{
+  border: 2px solid #fafa33;
+  background-color: #FFFFCC;
+  padding: 0.6em;
+} 
+
+
+
  .alterna_color ol, .alterna_color li {
     padding: 0.6em;
   }
@@ -71,5 +79,32 @@ h2{
 }
 .mas_info li:hover a{
   color: brown;
+}
+
+
+/* FLEX */
+.container-flex{
+  display: flex ;
+  flex-direction: row ;
+  /* flex-wrap: wrap !important; */
+  justify-content: stretch;
+  align-items: flex-start ;
+  row-gap: 0.3em ;
+  column-gap: 0.3em ;
+}
+
+.container-flex .itemPrincipal{
+  /* flex-grow: 3 !important; */
+  order: 1;
+  width: auto;
+}
+
+.container-flex .itemWebgrafia{
+  /* flex-grow: 1 !important; */
+  order: 0;
+  width: 22%;
+  /* height: 100vh !important; */
+  position: sticky;
+  top: 8px;
 }
 

@@ -16,32 +16,6 @@ window.addEventListener("load", ()=>{
 f_cargaDocumento = ()=>{
     // Creamos el objeto para gestionar la petición AJAX 'XMLHttpRequest'
     let xmlHttp = new XMLHttpRequest();
-    // --------------------
-    xmlHttp.abort(); //Cancela la solicitud actual
-    // --------------------
-    xmlHttp.getAllResponseHeaders(); // Devuelve información de encabezado
-    // --------------------
-    xmlHttp.getResponseHeader();// Devuelve información de encabezado específica
-    // --------------------
-    /*
-    Especifica la solicitud:
-    - método: el tipo de solicitud GET o POST
-    - url: la ubicación del archivo
-    - async: verdadero (asincrónico) o falso (sincrónico)
-    - usuario: nombre de usuario opcional 
-    - psw: contraseña opcional
-    */
-   let method;
-   let url;
-   let async;
-   let user;
-   let psw;
-   xmlHttp.open(method,url,async,user,psw);
-   // --------------------
-
-    // --------------------
-
-    // --------------------
-
+    
 };
 

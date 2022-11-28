@@ -10,32 +10,40 @@
   <!-- bootstrap CSS -->
   <link rel="stylesheet" href="css/style.css"></link>
   <link rel="stylesheet" href="css/tooltip.css">
+  <link rel="stylesheet" href="css/code.css">
+ 
+
   <!-- SCRIPTS JS -->
   <script src="js/utiles.js"></script>
   <script src="js/ajax.js"></script>
+
+  
   
 </head>
-<body class="container-fluid">
-
-<!-- AQUI EL CÓDIGO HTML PRINCIPAL -->
-<hr>
-<?php
-    include_once("html/principal.html");
-?>
-<br>
-<!-- <button id="btn_limpiarConsola" onclick="console.clear()" style="margin: 0.6em 0">Limpiar Consola</button> -->
-<br>
-<hr>
-  <!-- TEORÍA -->
-  <?php
-    include_once("html/teoria.html");
-  ?>
-
-<hr>
-
-<!-- WEBGRAFIA -->
-<?php
-  include_once("html/webgrafia.html");
-?>
+<body>
+<div class="container-flex">
+  <!-- AQUI EL CÓDIGO HTML PRINCIPAL -->
+  <div class="itemPrincipal">
+    <hr>
+    <?php
+        include_once("html/principal.html");
+    ?>
+    <br>
+    <!-- <button id="btn_limpiarConsola" onclick="console.clear()" style="margin: 0.6em 0">Limpiar Consola</button> -->
+    <br>
+    <hr>
+      <!-- TEORÍA -->
+      <?php
+        include_once("html/teoria.html");
+      ?>
+    <hr>
+  </div>
+  <div class="itemWebgrafia">
+    <!-- WEBGRAFIA -->
+    <?php
+      include_once("html/webgrafia.html");
+    ?>
+  </div>
+</div>
 </body>
 </html>
