@@ -70,6 +70,9 @@ f_cargaDocumento = ()=>{
     - usuario: nombre de usuario opcional 
     - psw: contraseña opcional
     */
+    
+    xmlHttp.open("GET",`datos.json`, true); //xmlHttp.open(method,url,async,user,psw);
+
     xmlHttp.open("GET",`../AJAX1/json/${id_inputFichero.files[0].name}`, true); //xmlHttp.open(method,url,async,user,psw);
 
     xmlHttp.send(); //Envía la solicitud al servidor. Utilizado para solicitudes GET
