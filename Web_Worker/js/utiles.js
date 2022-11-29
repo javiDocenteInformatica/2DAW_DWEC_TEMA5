@@ -3,16 +3,7 @@ window.addEventListener("load", ()=>{
 
     // MANEJADOR DE EVENTOS
 
-    // Evento click para boton iniciar worker
-    document.querySelector("#btn_iniciarWorker").addEventListener("click", (evento)=>{
-      iniciarWorker();
-    });
-
     
-    // Evento click para boton detener worker
-    document.querySelector("#btn_detenerWorker").addEventListener("click", (evento)=>{
-      detenerWorker();
-    });   
 
 });
 
@@ -23,7 +14,7 @@ window.addEventListener("load", ()=>{
      * @param {string} "mensaje_click_worker"
      * @returns {void}
      */
-     let f_mensaje_click_webworker = (p_mensaje_click_worker)=>{
+     let f_mensaje_click_webworker = function (p_mensaje_click_worker){
 
       // parrafo para añadir un mensaje de informacion sobre el Web Worker
       let pHTML_mensaje_click_worker = document.querySelector("#p_mensaje_click_worker");

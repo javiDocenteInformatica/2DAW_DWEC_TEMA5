@@ -1,7 +1,7 @@
 /**
  * Funcion que devuelve el tiempo en un formato concreto
  * @date 2022-11-27
- * @returns {Date} tiempo
+ * @returns {string} tiempo
  */
  let getTiempo = ()=>{
   // OBTENER FECHA ACTUAL

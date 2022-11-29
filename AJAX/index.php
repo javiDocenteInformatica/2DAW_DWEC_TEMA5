@@ -26,8 +26,8 @@
   <div class="itemPrincipal">
     <hr>
     <?php
-        include_once("php/ajax_prueba1.php");
-        // include_once("html/ajax_fichero1.html");
+        // include_once("php/ajax_prueba1.php");
+        include_once("html/ajax_fichero1.html");
     ?>
     <br>
     <!-- <button id="btn_limpiarConsola" onclick="console.clear()" style="margin: 0.6em 0">Limpiar Consola</button> -->
