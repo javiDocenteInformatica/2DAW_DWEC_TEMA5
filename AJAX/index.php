@@ -26,7 +26,7 @@
   <div class="itemPrincipal">
     <hr>
     <?php
-        include_once("php/ajax_prueba1.php");
+        include_once("html/ajax_prueba1.html");
         // include_once("html/ajax_fichero1.html");
     ?>
     <br>

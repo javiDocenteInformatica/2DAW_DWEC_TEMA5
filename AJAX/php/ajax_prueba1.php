@@ -1,29 +1,34 @@
 <?php
-echo "<pre>";
-echo print_r($_SERVER["REQUEST_METHOD"]);
-echo "</pre>";
+// echo "<pre>";
+// echo $_SERVER["REQUEST_METHOD"];
+// echo "</pre>";
+
+// VARIABEL GLOBAL AL DOCUMENTO
+$usuario; // Almacena el nombre de usuario
+$mensaje; // Almacena el mensaje a mostrar
 
 if($_SERVER["REQUEST_METHOD"] == "GET"){
     
     if(isset($_GET['name_usuario'])){
-        // echo "<p id=resultadoAJAX> Bienvenido/a $usuario </p>";
-    }else{
-        // echo "El \$_GET['name_usuario'] no está definido o es nulo";
+        
+        $usuario = $_GET['name_usuario'];
+        if(strlen($usuario) <> 0){
+            $mensaje = "Bienvenido/a '<strong>$usuario</strong>'" ; 
+        }else{
+            $mensaje = "El ".$usuario ." no está definido o es una cadena vacía.";
+        }
     }
-    // echo "<pre>";
-    // echo print_r($_SERVER);
-    // echo "</pre>";
+    
 }
 
-$usuario="";
+// echo "<pre>";
+// echo print_r($_SERVER);
+// echo "</pre>";
+
 ?>
 
-<script src="js/ajax_prueba1.js"></script>
-<div id="contenedor_ajax">
-    <label for="name_usuario">Nombre de Usuario: </label><br>
-    <input type="text" id="input_usuario" name="name_usuario">
-
-    <button id="btn_enviar">Enviar al Servidor</button>
-    <br>
-</div>
-
+<?php 
+if(isset($mensaje)){
+    echo $mensaje;
+}
+?> 
