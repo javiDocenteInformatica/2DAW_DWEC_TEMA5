@@ -1,66 +1,44 @@
 // VARIABLES GLOBALES
 let id_inputFichero; // obtiene el input del selector de fichero
 let btn_obtieneFichero; // obtiene el botón para obtener el fichero
+let fichero_json; // fichero json
+let respuestaServidor; // obtiene el párrafo donde se almacenará el resultado
 let f_cargaDocumento; // función para cargar el documento en HTML
 
 // Espera a que cargue el contenido del HTML
 window.addEventListener("load", ()=>{
+
+
     id_inputFichero = document.querySelector("#id_inputFichero");
     btn_obtieneFichero = document.querySelector("#btn_obtieneFichero");
+    contenedor_ajax = document.querySelector("#contenedor_ajax");
     // id_inputFichero.files[0].name="json\\datos.json";
     
-    
+    // El click del botón lanza la petición AJAX
     btn_obtieneFichero.addEventListener("click", ()=>{
         f_cargaDocumento();
     });
     
     
     
-    // MOSTRAR POR CONSOLA
-    // Comprueba el fichero
+    // Comprueba el fichero para ver por CONSOLA el contenido (NO ES NECESARIO)
     id_inputFichero.addEventListener("change", ()=>{
-        console.log(id_inputFichero);
-        console.log(id_inputFichero.files[0]);
+        
+        // console.log(id_inputFichero);
+        // console.log(id_inputFichero.files[0]);
+        fichero_json = id_inputFichero.files[0];
+
+        
+        
     });
     
-    // console.log(btn_obtieneFichero);
 });
-
 
 f_cargaDocumento = ()=>{
     // Creamos el objeto para gestionar la petición AJAX 'XMLHttpRequest'
-    let xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = ()=>{
-        switch(xmlHttp.readyState){
-            case 0:
-                console.log("xmlHttp.readyState: ","0: solicitud no inicializada");
-                console.log("xmlHttp.status: ",xmlHttp.status);
-                break;
-            case 1:
-                console.log("xmlHttp.readyState: ","1: conexión de servidor establecida");
-                console.log("xmlHttp.status: ",xmlHttp.status);
-                break;
-            case 2:
-                console.log("xmlHttp.readyState: ","2: solicitud recibida");
-                console.log("xmlHttp.status: ",xmlHttp.status);
-                break;
-            case 3:
-                console.log("xmlHttp.readyState: ","3: solicitud de procesamiento");
-                console.log("xmlHttp.status: ",xmlHttp.status);
-                break;
-            case 4:
-                console.log("xmlHttp.readyState: ","4: solicitud finalizada y respuesta lista");
-                console.log("xmlHttp.status: ",xmlHttp.status);
-                if(xmlHttp.status == 200){
-                    btn_obtieneFichero.insertAdjacentHTML("afterend",`<p>${this.responseText}</p>`);
-                }
-                break;
-            default:
-                console.log("xmlHttp.readyState: ","Error, el estado no se encuentra entre 0 y 4");
-                console.log("xmlHttp.status: ",xmlHttp.status);
-                break;
-        }
-    }
+    let objetoAJAX = new XMLHttpRequest();
+
+    // --------------------------------------
 
     /*
     Especifica la solicitud:
@@ -69,15 +47,106 @@ f_cargaDocumento = ()=>{
     - async: verdadero (asincrónico) o falso (sincrónico)
     - usuario: nombre de usuario opcional 
     - psw: contraseña opcional
+    * objetoAJAX.open(method,url,async,user,psw);
     */
+    let method = "GET";
+    let url = `json/datos.json`;
+    console.log(url);
+    let async = true;
+
+    // CONFIGURAMOS LA PETICIÓN ANTES DE ENVIARLA
+    objetoAJAX.open(method,url); //objetoAJAX.open(method,url,async,user,psw);
     
-    xmlHttp.open("GET",`datos.json`, true); //xmlHttp.open(method,url,async,user,psw);
 
-    xmlHttp.open("GET",`../AJAX1/json/${id_inputFichero.files[0].name}`, true); //xmlHttp.open(method,url,async,user,psw);
+    // --------------------------------------
 
-    xmlHttp.send(); //Envía la solicitud al servidor. Utilizado para solicitudes GET
+    // EL CLIENTE PERMACENECE A LA ESCUCHA, ESPERANDO RESPUESTA DEL SERVIDOR
+    //** IMPORTANTE: La escucha hay que hacerla antes del SEND(). Puede estar antes o después del open, pero siempre antes de enviar la petición. **/
+    objetoAJAX.onreadystatechange = function(){ //NOTA: No le gusta la función flecha '()=>'
 
-    console.log("xmlHttp.getAllResponseHeaders()",xmlHttp.getAllResponseHeaders()); // Devuelve información de encabezado
+        if(objetoAJAX.readyState == 4){ // Estado del XMLHttpRequest
+            console.log("objetoAJAX.readyState: ","4: solicitud finalizada y respuesta lista");
+
+            if(objetoAJAX.status == 200){ // Estado de la petición HTTP
+
+                // Obtenemos el elemento HTML que almacenará la respuesta
+                respuestaServidor = document.querySelector("#respuestaServidor");
+        
+                // Si es nulo o está indefinido, deberemos insertarlo en el HTML
+                if(respuestaServidor === null || respuestaServidor === undefined){
+                    
+                    // Insertamos la respuesta al final del div contenedor 
+                    contenedor_ajax.insertAdjacentHTML("beforeend",`<pre id="respuestaServidor">${recorreObjeto(JSON.parse(this.responseText))}</pre>`);
+
+                }else{// Si no, sólo tenemos que cambiar su contenido.
+                    
+                    respuestaServidor.innerHTML = JSON.parse(this.responseText);
+                }
+            }
+        }
+
+        // ..........................................
+        // SIMPLEMENTE INFORMATIVO
+        // switch(this.readyState){ // Estado del XMLHttpRequest
+        //     case 0:
+        //         console.log("objetoAJAX.readyState: ","0: solicitud no inicializada");
+        //     break;
+
+        //     case 1:
+        //         console.log("objetoAJAX.readyState: ","1: conexión de servidor establecida");
+        //     break;
+
+        //     case 2:
+        //         console.log("objetoAJAX.readyState: ","2: solicitud recibida");
+        //     break;
+
+        //     case 3:
+        //         console.log("objetoAJAX.readyState: ","3: solicitud de procesamiento");
+        //     break;
+
+        //     case 4:
+        //         console.log("objetoAJAX.readyState: ","4: solicitud finalizada y respuesta lista");
+        //     break;
+
+        // }
+        
+        // console.log("objetoAJAX.status: ",this.status); // Estado de la petición HTTP
+
+        // console.log("objetoAJAX.getAllResponseHeaders(): ",objetoAJAX.getAllResponseHeaders()); // Devuelve información de encabezado
+        // ..........................................
+    }
+
+    // --------------------------------------
     
+    // SE ENVÍA LA PETICIÓN AL SERVIDOR
+   
+    // objetoAJAX.setRequestHeader("Content-Type","application/json"); // En principio no es necesario
+
+    objetoAJAX.send(); //Envía la solicitud al servidor. Utilizado para solicitudes GET
+    // objetoAJAX.send(fichero_json);//Envía la solicitud al servidor. Utilizado para solicitudes POST
+
+    // --------------------------------------
+
 };
+
+function recorreObjeto(p_objeto){
+    console.log(p_objeto);
+    // cadena que representa al objeto
+    let representacion = `{ <br>`;
+
+    // las claves del objeto
+    let claves = Object.keys(p_objeto);
+
+    for(let i=0; i < claves.length; i++){
+        if(i == claves.length-1){
+            representacion += `${claves[i]}: ${p_objeto[claves[i]]} <br>`;  
+        }else{
+            representacion += `${claves[i]}: ${p_objeto[claves[i]]} <br>, <br>`;  
+        }        
+    }
+
+    representacion += `}`;
+
+    return representacion;
+}
 
