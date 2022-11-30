@@ -12,7 +12,7 @@ window.addEventListener("load", ()=>{
     
     input_usuario = document.querySelector("#input_usuario");
     btn_enviar = document.querySelector("#btn_enviar");
-    resultadoAJAX = document.querySelector("#resultadoAJAX");
+    // resultadoAJAX = document.querySelector("#resultadoAJAX");
 
 
     btn_enviar.addEventListener("click", ()=>{
@@ -29,25 +29,45 @@ f_cargaDatos = function (){
     // Creamos el objeto para gestionar la petición AJAX 'XMLHttpRequest'
     let xmlHttp = new XMLHttpRequest();
 
+
+    /*
+    Especifica la solicitud:
+    - método: el tipo de solicitud GET o POST
+    - url: la ubicación del archivo
+    - async: verdadero (asincrónico) o falso (sincrónico)
+    - usuario: nombre de usuario opcional 
+    - psw: contraseña opcional
+    * xmlHttp.open(method,url,async,user,psw);
+    */
+   let method = "GET";
+   let url = `/php/ajax_prueba1.php?name_usuario="${input_usuario.value}"`;
+   let async = true;
+
+    xmlHttp.open(method,url); //xmlHttp.open(method,url,async,user,psw);
+
+    xmlHttp.send(); //Envía la solicitud al servidor. Utilizado para solicitudes GET
+    // xmlHttp.send(string);// POST
+
+
     xmlHttp.addEventListener('readystatechange', (evento)=>{
     // xmlHttp.onreadystatechange = ()=>{
         switch(this.readyState){
-            case 0:
-                console.log("xmlHttp.readyState: ","0: solicitud no inicializada");
-                console.log("xmlHttp.status: ",this.status);
-                break;
-            case 1:
-                console.log("xmlHttp.readyState: ","1: conexión de servidor establecida");
-                console.log("xmlHttp.status: ",xmlHttp.status);
-                break;
-            case 2:
-                console.log("xmlHttp.readyState: ","2: solicitud recibida");
-                console.log("xmlHttp.status: ",xmlHttp.status);
-                break;
-            case 3:
-                console.log("xmlHttp.readyState: ","3: solicitud de procesamiento");
-                console.log("xmlHttp.status: ",xmlHttp.status);
-                break;
+            // case 0:
+            //     console.log("xmlHttp.readyState: ","0: solicitud no inicializada");
+            //     console.log("xmlHttp.status: ",this.status);
+            //     break;
+            // case 1:
+            //     console.log("xmlHttp.readyState: ","1: conexión de servidor establecida");
+            //     console.log("xmlHttp.status: ",xmlHttp.status);
+            //     break;
+            // case 2:
+            //     console.log("xmlHttp.readyState: ","2: solicitud recibida");
+            //     console.log("xmlHttp.status: ",xmlHttp.status);
+            //     break;
+            // case 3:
+            //     console.log("xmlHttp.readyState: ","3: solicitud de procesamiento");
+            //     console.log("xmlHttp.status: ",xmlHttp.status);
+            //     break;
             case 4:
                 console.log("xmlHttp.readyState: ","4: solicitud finalizada y respuesta lista");
                 console.log("xmlHttp.status: ",this.status);
@@ -62,25 +82,10 @@ f_cargaDatos = function (){
         }
     });
 
-    /*
-    Especifica la solicitud:
-    - método: el tipo de solicitud GET o POST
-    - url: la ubicación del archivo
-    - async: verdadero (asincrónico) o falso (sincrónico)
-    - usuario: nombre de usuario opcional 
-    - psw: contraseña opcional
-    * xmlHttp.open(method,url,async,user,psw);
-    */
-   let method = "GET";
-   let url = "ajax_prueba1.php"
-   let async = true;
-
-    xmlHttp.open(method,url,async); //xmlHttp.open(method,url,async,user,psw);
-
-    xmlHttp.send(); //Envía la solicitud al servidor. Utilizado para solicitudes GET
+    
 
     console.log("xmlHttp.getAllResponseHeaders()",xmlHttp.getAllResponseHeaders()); // Devuelve información de encabezado
     
 };
 
-console.log(f_cargaDatos);
+// console.log(f_cargaDatos);
