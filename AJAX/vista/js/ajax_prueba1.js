@@ -42,7 +42,7 @@ f_cargaDatos = function (){
     * objetoAJAX.open(method,url,async,user,psw);
     */
     let method = "GET";
-    let url = `php/ajax_prueba1.php?${input_usuario.getAttribute("name")}=${input_usuario.value}`;
+    let url = `controlador/ajax_prueba1.php?${input_usuario.getAttribute("name")}=${input_usuario.value}`;
     console.log(url);
     let async = true;
 

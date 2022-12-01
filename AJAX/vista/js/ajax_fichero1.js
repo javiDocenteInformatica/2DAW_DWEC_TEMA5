@@ -1,5 +1,5 @@
 // VARIABLES GLOBALES
-let id_inputFichero; // obtiene el input del selector de fichero
+let inputFichero; // obtiene el input del selector de fichero
 let btn_obtieneFichero; // obtiene el botón para obtener el fichero
 let fichero_json; // fichero json
 let respuestaServidor; // obtiene el párrafo donde se almacenará el resultado
@@ -9,10 +9,10 @@ let f_cargaDocumento; // función para cargar el documento en HTML
 window.addEventListener("load", ()=>{
 
 
-    id_inputFichero = document.querySelector("#id_inputFichero");
+    inputFichero = document.querySelector("#id_inputFichero");
     btn_obtieneFichero = document.querySelector("#btn_obtieneFichero");
     contenedor_ajax = document.querySelector("#contenedor_ajax");
-    // id_inputFichero.files[0].name="json\\datos.json";
+    // inputFichero.files[0].name="json\\datos.json";
     
     // El click del botón lanza la petición AJAX
     btn_obtieneFichero.addEventListener("click", ()=>{
@@ -22,11 +22,10 @@ window.addEventListener("load", ()=>{
     
     
     // Comprueba el fichero para ver por CONSOLA el contenido (NO ES NECESARIO)
-    id_inputFichero.addEventListener("change", ()=>{
+    inputFichero.addEventListener("change", ()=>{
         
-        // console.log(id_inputFichero);
-        // console.log(id_inputFichero.files[0]);
-        fichero_json = id_inputFichero.files[0];
+        fichero_json = inputFichero.files[0];
+        console.log(fichero_json);
 
         
         
@@ -50,7 +49,7 @@ f_cargaDocumento = ()=>{
     * objetoAJAX.open(method,url,async,user,psw);
     */
     let method = "GET";
-    let url = `json/datos.json`;
+    let url = `modelo/json/${fichero_json.name}`;
     console.log(url);
     let async = true;
 

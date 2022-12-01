@@ -1,10 +1,27 @@
 
+.valido{
+  color: green;
+  font-weight: bold;
+  border-style: solid;
+  border-color: green;
+}
+
+.no_valido{
+  color: red;
+  font-weight: bold;
+  border-style: solid;
+  border-color: red;
+  
+}
+
+
 hr {
     height: 0.6em;
     background-color: chocolate;
     margin-top: 2em;
     margin-bottom: 2em;
   }
+
 h1{
   font-size: 2em !important;
   color: aliceblue;
@@ -18,12 +35,23 @@ h2{
   padding: 0.3em;
 }
 
+
+#contenedor_ajax{
+  padding: 0.6em;
+  border: chocolate solid 5px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+
 .cuadro_amarillo{
   border: 2px solid #fafa33;
   background-color: #FFFFCC;
   padding: 0.6em;
 } 
-
 
 
  .alterna_color ol, .alterna_color li {

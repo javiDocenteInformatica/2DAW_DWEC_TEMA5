@@ -37,11 +37,8 @@
         scroll-behavior: unset; */
     }
 
-    .webgrafia ul li {
-        list-style-type: none;
-    }
 
-    .padre_flex {
+    ul.padre_flex {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
@@ -51,17 +48,32 @@
         align-items: stretch;
     }
 
-    .padre_flex a {
-        padding: 0.6em;
+    ul.padre_flex li {
+        
+        list-style-type: none;
         border: 1px solid blanchedalmond;
+    }
+
+    ul.padre_flex li:hover {
+        
+        background-color: white;
+        /* cursor: pointer; */
+    }
+
+    ul.padre_flex li:hover a{
+        color: blue;
+    }
+
+    ul.padre_flex a {
+        
+        display: block;
+        padding: 0.6em;
+        /* margin: 0.6em; */
         text-decoration: none;
         color: blanchedalmond;
     }
 
-    .padre_flex a:hover {
-        color: green;
-        background-color: white;
-    }
+    
 </style>
 
 <div class="webgrafia">
@@ -116,10 +128,7 @@
             <a href="" target="_blank"></a>
         </li>
 
-        <li class="tooltip">
-            <span class="tooltiptext"></span>
-            <a href="" target="_blank"></a>
-        </li>
+        
 
 <!-- --------------------------------------------------------------- -->
 <!-- --------------------------------------------------------------- -->
@@ -147,6 +156,26 @@
             <a href="https://www.w3schools.com/jsref/prop_win_sessionstorage.asp" target="_blank">Window sessionStorage</a>
         </li>
 
+        <li class="tooltip">
+            <span class="tooltiptext">StackOverflow</span>
+            <a href="https://es.stackoverflow.com/questions/105687/diferencia-entre-bubbling-y-capturing" target="_blank">Diferencia entre <b><u>Bubbling y Capturing</u></b> (EVENTOS)</a>
+        </li>
+
+        <li class="tooltip">
+            <span class="tooltiptext">webmound.com</span>
+            <a href="https://www.webmound.com/input-vs-change-vs-blur-vs-focus-javascript-events/" target="_blank">Input VS Change VS Blur VS Focus - Differences of JavaScript Events</a>
+        </li>
+
+        <li class="tooltip">
+            <span class="tooltiptext"></span>
+            <a href="" target="_blank"></a>
+        </li>
+
+        <li class="tooltip">
+            <span class="tooltiptext"></span>
+            <a href="" target="_blank"></a>
+        </li>
+        
 <!-- --------------------------------------------------------------- -->
 
         <h3>JS JSON</h3>
@@ -232,13 +261,59 @@
             <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank">A Complete Guide to Flexbox</a>
         </li>
         
-    <!--
+<!-- --------------------------------------------------------------- -->
+<!-- --------------------------------------------------------------- -->
+<!-- --------------------------------------------------------------- -->
+
+        <h2>BBDD</h2>
+        
+        <li class="tooltip">
+            <span class="tooltiptext">tutorialesprogramacionya.com</span>
+            <a href="https://www.tutorialesprogramacionya.com/mysqlya/" target="_blank">MySQL Ya</a>
+        </li>
+
+        <li class="tooltip">
+            <span class="tooltiptext">w3schools</span>
+            <a href="https://www.w3schools.com/MySQL/default.asp" target="_blank">MySQL Tutorial</a>
+        </li>
+
+        
+
+
+<!-- --------------------------------------------------------------- -->
+<!-- --------------------------------------------------------------- -->
+<!-- --------------------------------------------------------------- -->
+    
+
+        <h2>MODELO - VISTA - CONTROLADR (MVC)</h2>
+        
+
+        <li class="tooltip">
+            <span class="tooltiptext">adaweb.es</span>
+            <a href="https://www.adaweb.es/modelo-vista-controlador-mvc-php/" target="_blank">Modelo vista controlador (MVC) en PHP</a>
+        </li>
+
+<!--
         
         <li class="tooltip">
             <span class="tooltiptext"></span>
             <a href="" target="_blank"></a>
         </li>
 
+        <li class="tooltip">
+            <span class="tooltiptext"></span>
+            <a href="" target="_blank"></a>
+        </li>
+
+        <li class="tooltip">
+            <span class="tooltiptext"></span>
+            <a href="" target="_blank"></a>
+        </li>
+
+        <li class="tooltip">
+            <span class="tooltiptext"></span>
+            <a href="" target="_blank"></a>
+        </li>
         
     -->
 
