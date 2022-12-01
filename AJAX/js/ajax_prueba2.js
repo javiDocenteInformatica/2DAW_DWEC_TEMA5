@@ -41,19 +41,18 @@ f_cargaDatos = function (){
     - psw: contraseña opcional
     * objetoAJAX.open(method,url,async,user,psw);
     */
-    let method = "GET";
-    let url = `php/ajax_prueba1.php?${input_usuario.getAttribute("name")}=${input_usuario.value}`;
+    let method = "POST";
+    let url = `php/ajax_prueba2.php`;
     console.log(url);
-    let async = true;
 
     // CONFIGURAMOS LA PETICIÓN ANTES DE ENVIARLA
-    objetoAJAX.open(method,url,async); //objetoAJAX.open(method,url,async,user,psw);
+    objetoAJAX.open(method,url); //objetoAJAX.open(method,url,async,user,psw);
     
     // --------------------------------------
 
     // EL CLIENTE PERMACENECE A LA ESCUCHA, ESPERANDO RESPUESTA DEL SERVIDOR
     //** IMPORTANTE: La escucha hay que hacerla antes del SEND(). Puede estar antes o después del open, pero siempre antes de enviar la petición. **/
-    objetoAJAX.addEventListener('readystatechange', function(){ //NOTA: No le gusta la función flecha '()=>'
+    objetoAJAX.addEventListener('load', function(){ //NOTA: No le gusta la función flecha '()=>'
     // objetoAJAX.onreadystatechange = ()=>{
         switch(this.readyState){
             case 0:
