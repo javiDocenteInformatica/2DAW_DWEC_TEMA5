@@ -1,24 +1,26 @@
-// VARIABLES GLOBALES
+// * VARIABLES GLOBALES
 let input_usuario; // obtiene el input del usuario
 let btn_enviar; // obtiene el botón para enviar datos al servidor
 let contenedor_ajax; // obtiene el div que contiene la información de ajax_prueba1.html
 
-let array_exito; // Array que almacena la comprobación exitosa o no de los campos que se van a enviar
-let exitoTotal = false; // variable que calcula si todos los campos están validados correctamente.; Se inicializa a 'false' para que por defecto no se supongan validados.
+let obj_comprobacionCampos; // Objeto que almacena la comprobación exitosa o no de los campos que se van a enviar
 
-let i = 0; // indice que nos servirá para comprobar cada uno de los campos que se van a enviar al servidor
+let html_respuestaServidor; // obtiene el párrafo donde se almacenará el resultado
 
-let numInputs = 0; // Cuenta los campos que se van a enviar al servidor
-
-let respuestaServidor; // obtiene el párrafo donde se almacenará el resultado
-
-// VARIABLES FUNCIONES GLOBALES
-let f_cargaDatos; // función que nos permite traernos datos del servidor con AJAX
-let f_cuentaElementosAEnviar; // función que calcula los elementos que van a ser enviados; Esto es necesario para luego comprobar los campos y validarlos.
+// * FUNCIONES GLOBALES
+let f_cuentaCamposAEnviar; // función que calcula los elementos que van a ser enviados; Esto es necesario para luego comprobar los campos y validarlos.
 let f_compruebaCampos; // función que comprueba los campos con expresiones regulares (RegEx)
+let f_cargaDatos; // función que nos permite traernos datos del servidor con AJAX
 
+/* ******************************************************************** */
+/* ******************************************************************** */
+/* ******************************************************************** */
 
-
+/* 
+******************
+* LOAD DOCUMENTO *
+******************
+*/
 // Espera a que cargue el contenido del HTML
 window.addEventListener("load", ()=>{
 
@@ -34,18 +36,13 @@ window.addEventListener("load", ()=>{
     btn_enviar = document.querySelector("#btn_enviar"); // botón que realiza la petición AJAX al servidor
 
 
-    
-    // Cuenta elementos a enviar al servidor
-    f_cuentaElementosAEnviar();
-
-
     /**
      **  EVENTOS ESCUCHA 
      **/
-    // EVENTO CLICK - PARA BOTONES
+    // * EVENTO CLICK - PARA BOTONES
     contenedor_ajax.addEventListener("click", function(evento){
         
-        evento.stopPropagation(); //Para el evento de BURBUJEAR (BUBBLING) hacia arriba
+        evento.stopPropagation(); //Para (STOP) el evento de BURBUJEAR (BUBBLING) hacia arriba
 
         if(evento.target == btn_enviar){
             i = 0; // Volvemos a 0; tras haber pasado el filtro los datos que han sido comprobados
@@ -54,7 +51,8 @@ window.addEventListener("load", ()=>{
         }
     } ,false); //con false usamos bubbling; por defecto está a false (ver más en Webgrafia.html)
 
-    // EVENTO CHANGE - PARA CAMPOS INPUT
+
+    // * EVENTO CHANGE - PARA CAMPOS INPUT
     contenedor_ajax.addEventListener("change", function(evento){
         
         evento.stopPropagation(); //Para el evento de BURBUJEAR (BUBBLING) hacia arriba
@@ -65,87 +63,127 @@ window.addEventListener("load", ()=>{
             // Comprueba el campo pasado por parámetro
             f_compruebaCampos(evento.target);
 
-            array_exito.forEach(function(valorActual, indice, array){
-                if(valorActual === false){
-                    return; // para el bucle
+            Object.keys(obj_comprobacionCampos).forEach(function(valorActual, indice, array){
+                if(obj_comprobacionCampos[valorActual] === false){
+                    console.log(`obj_comprobacionCampos[${valorActual}] === false`);
+                    
+                    // El botón de 'Enviar' debe seguir deshabilitado si algún campo no se ha validado
+                    btn_enviar.disabled = true;
+
+                    // Si algún campo no pasa la comprobación, el 'forEach' se detiene aquí (ya no se comprueban más campos, puesto que si un campo no pasa la comprobación, ya no tiene sentido seguir)
+                    return; 
                 }
+                                
+                // CONSOLE: recorremos el objeto que contiene los booleanos de comprobación de cada campo a enviar
+                console.log(valorActual, obj_comprobacionCampos[valorActual]);
 
-
+                // Si el código llega hasta aquí, es que ha validado todos los campos, y ya podemos habilitar el botón de 'Enviar' al servidor
+                btn_enviar.disabled = false;
             });
-            
-        }
 
+        }
     } ,false); //con 'false' usamos 'bubbling' (de dentro hacia fuera); por defecto está a false (ver más en Webgrafia.html); 'true' sería 'capture' que es lo contrario a 'bubbling' (de fuera hacia dentro)
+
+
+
+
+    // * Ejecuta FUNCIÓN *
+    // Cuenta campos a enviar al servidor y almacena una variable booleana por cada uno de ellos. 'false' si el campo no es válido y 'true' si lo es
+    obj_comprobacionCampos = f_cuentaCamposAEnviar();
+    
+    // CONSOLE: Comprobamos tamaño del objeto de comprobación
+    // console.log(`obj_comprobacionCampos.length: `,`${Object.keys(obj_comprobacionCampos).length}`);
+
 });
 
 
 
-f_cuentaElementosAEnviar = function(){
-    /**
-     * 'exito' es un array que almacena por cada posición si ha sido validado cada campo que va a ser enviado al servidor; Cada posición indica si ha sido validado el campo (true) o no (false).
-     */
+
+
+
+/* ******************************************************************** */
+/* ******************************************************************** */
+/* ******************************************************************** */
+
+
+
+/*
+*******************************
+* Definición de FUNCIONES
+*******************************
+*/
+
+
+/* FUNCIÓN f_cuentaCamposAEnviar: 
+* Cuenta los campos que van a ser enviados al servidor y carga el 'obj_comprobacionCampos' que guarda en cada posición true/false dependiendo si el campo ha sido validado o no.
+*/
+f_cuentaCamposAEnviar = function(){
+
+    let obj_comprobacionCampos = {}; // Inicializa el objeto para poder utilizarlo y rellenarlo
+
     // Cuenta los datos que se van a enviar al servidor
     Array.from(contenedor_ajax.children).forEach(function(valorActual, indice, array){
-        if(valorActual.nodeName == "INPUT"){
-            numInputs ++;
-        }
         
+        if(valorActual.nodeName == "INPUT"){
+            // Añade la comprobación de dicho campo a 'false' por defecto, si el campo pasa el filtro de comprobación entonces será 'true'
+            obj_comprobacionCampos[valorActual.id] = false;
+
+            // CONSOLE: Comprobamos que se va almacenando en el objeto de comprobación
+            // console.log(`obj_comprobacionCampos['${valorActual.id}']: `,`${obj_comprobacionCampos[valorActual.id]}`);
+            
+        }
     });
 
-    // 'exito' almacenará un array con los 'true' o 'false' de cada campo, para ver si han sido validados.; Al inicio, está todo a false
-    for(let i=0; i < numInputs; i++){
-        array_exito[i] = false;
-    }
+    return obj_comprobacionCampos;
 }
 
 
+/* FUNCIÓN f_compruebaCampos: 
+* función que comprueba cada campo a enviar y que si es válido modificará a 'true' su valor en la posición del array 'obj_comprobacionCampos' correspondiente
+*/
 f_compruebaCampos = function(p_elementoHTML){
 
-    // Comprueba campo USUARIO
+    let regex = / /; // variable que almacena la expresion regular a comprobar
+    
+    // campo USUARIO
     if(p_elementoHTML == input_usuario){
 
         // Expresión Regular que valida el campo de USUARIO
-        let regex = /^[a-zA-Z](.*)[a-zA-Z0-9_-]{2,20}$/gm;
+        regex = /^[a-zA-Z](.*)[a-zA-Z0-9_-]{2,20}$/gm;
 
-        // Si se valida la expresión regular...
-        if(regex.test(input_usuario.value) === true){
-            input_usuario.classList.remove("no_valido");
-            input_usuario.classList.add("valido");
-            
-            array_exito[i] = true; // Pasa el filtro
-
-        }else{ // Si no... 
-            input_usuario.classList.remove("valido");
-            input_usuario.classList.add("no_valido");
-        }
-
-    // Comprueba campo PASSWORD
+    // campo PASSWORD
     }else if(p_elementoHTML == input_password){
 
         // Expresión Regular que valida el campo de USUARIO
-        let regex = /^[a-zA-Z0-9_-ñ¿?.@$#]{4,12}$/gm;
-
-        // Si se valida la expresión regular...
-        if(regex.test(input_password.value) === true){
-            input_password.classList.remove("no_valido");
-            input_password.classList.add("valido");
-            
-            array_exito[i] = true; // Pasa el filtro
-            
-        }else{ // Si no... 
-            input_password.classList.remove("valido");
-            input_password.classList.add("no_valido");
-        }
+        regex = /^[a-zA-Z0-9_-ñ¿?.@$#]{4,12}$/gm;
 
     }
 
-    i++; // una vez comprobado el campo, se le suma 1 para pasar al siguiente indice para almacenar el resultado de exito o no del siguiente campo
+    // Por si acaso, comprobamos que la expresión regular no sea vacía
+    if(regex == / /){
+        console.error(`f_compruebaCampos -> regex -> ${regex}`);
+        return;
+    }
 
+    // Almacenamos el booleano que se genera al ejecutar la expresión regular sobre el campo a validar
+    obj_comprobacionCampos[p_elementoHTML.id] = regex.test(p_elementoHTML.value); 
+
+    // Si se valida la expresión regular...
+    if(obj_comprobacionCampos[p_elementoHTML.id]){
+        p_elementoHTML.classList.remove("no_valido");
+        p_elementoHTML.classList.add("valido");
+
+    }else{ // Si no... 
+        p_elementoHTML.classList.remove("valido");
+        p_elementoHTML.classList.add("no_valido");
+    }
 
 };
 
 
-
+/* FUNCIÓN f_cargaDatos: 
+* función que utiliza AJAX para enviar y recibir datos del servidor.
+*/
 f_cargaDatos = function (){
 
     /*
@@ -189,17 +227,17 @@ f_cargaDatos = function (){
          */
 
         // Obtenemos el elemento HTML que almacenará la respuesta
-        respuestaServidor = document.querySelector("#respuestaServidor");
+        html_respuestaServidor = document.querySelector("#respuestaServidor");
             
         // Si es nulo o está indefinido, deberemos insertarlo en el HTML
-        if(respuestaServidor === null || respuestaServidor === undefined){
+        if(html_respuestaServidor === null || html_respuestaServidor === undefined){
             
             // Insertamos la respuesta al final del div contenedor 
             contenedor_ajax.insertAdjacentHTML("beforeend",`<p id="respuestaServidor">${this.responseText}</p>`);
 
         }else{// Si no, sólo tenemos que cambiar su contenido.
             
-            respuestaServidor.innerHTML = this.responseText;
+            html_respuestaServidor.innerHTML = this.responseText;
         }
     });
 

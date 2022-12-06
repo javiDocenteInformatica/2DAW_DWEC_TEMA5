@@ -8,7 +8,6 @@ let f_cargaDocumento; // función para cargar el documento en HTML
 // Espera a que cargue el contenido del HTML
 window.addEventListener("load", ()=>{
 
-
     inputFichero = document.querySelector("#id_inputFichero");
     btn_obtieneFichero = document.querySelector("#btn_obtieneFichero");
     contenedor_ajax = document.querySelector("#contenedor_ajax");
@@ -26,8 +25,6 @@ window.addEventListener("load", ()=>{
         
         fichero_json = inputFichero.files[0];
         console.log(fichero_json);
-
-        
         
     });
     
