@@ -303,6 +303,28 @@
             <a href="https://www.adaweb.es/modelo-vista-controlador-mvc-php/" target="_blank">Modelo vista controlador (MVC) en PHP</a>
         </li>
 
+
+<!-- --------------------------------------------------------------- -->
+<!-- --------------------------------------------------------------- -->
+<!-- --------------------------------------------------------------- -->
+
+        <h2>PHP</h2>
+
+        <li class="tooltip">
+            <span class="tooltiptext">www.php.net</span>
+            <a href="https://www.php.net/manual/es/function.scandir.php" target="_blank">scandir function</a>
+        </li>
+
+        <li class="tooltip">
+            <span class="tooltiptext">www.php.net</span>
+            <a href="https://www.php.net/manual/es/reserved.variables.php" target="_blank">Variables predefinidas PHP</a>
+        </li>
+
+        <li class="tooltip">
+            <span class="tooltiptext"></span>
+            <a href="" target="_blank"></a>
+        </li>
+
 <!--
         
         <li class="tooltip">

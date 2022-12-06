@@ -18,7 +18,7 @@ let f_cargaDatos; // función que nos permite traernos datos del servidor con AJ
 
 /* 
 ******************
-* LOAD DOCUMENTO *
+* LOAD DOM *
 ******************
 */
 // Espera a que cargue el contenido del HTML
@@ -45,9 +45,8 @@ window.addEventListener("load", ()=>{
         evento.stopPropagation(); //Para (STOP) el evento de BURBUJEAR (BUBBLING) hacia arriba
 
         if(evento.target == btn_enviar){
-            i = 0; // Volvemos a 0; tras haber pasado el filtro los datos que han sido comprobados
 
-            f_cargaDatos();
+            f_cargaDatos(); // Ejecuta función que se encarga de la petición AJAX al SERVIDOR
         }
     } ,false); //con false usamos bubbling; por defecto está a false (ver más en Webgrafia.html)
 
@@ -183,7 +182,7 @@ f_compruebaCampos = function(p_elementoHTML){
 
 
 /* FUNCIÓN f_cargaDatos: 
-* función que utiliza AJAX para enviar y recibir datos del servidor.
+* función que utiliza AJAX para enviar y recibir datos del SERVIDOR.
 */
 f_cargaDatos = function (){
 
