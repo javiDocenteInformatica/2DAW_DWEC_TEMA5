@@ -161,13 +161,14 @@ f_compruebaCampos = function(p_elementoHTML){
 
     // Por si acaso, comprobamos que la expresión regular no sea vacía
     if(regex == / /){
-        console.error(`f_compruebaCampos -> regex -> ${regex}`);
-        return;
+        console.error(`f_compruebaCampos -> ${p_elementoHTML.id} -> regex -> ${regex}`);
+        return; // Si la expresión es vacía, no salimos de la función, así evitamos ejecutar el código a continuación
     }
 
     // Almacenamos el booleano que se genera al ejecutar la expresión regular sobre el campo a validar
     obj_comprobacionCampos[p_elementoHTML.id] = regex.test(p_elementoHTML.value); 
 
+    // CSS para el campo a validar
     // Si se valida la expresión regular...
     if(obj_comprobacionCampos[p_elementoHTML.id]){
         p_elementoHTML.classList.remove("no_valido");
