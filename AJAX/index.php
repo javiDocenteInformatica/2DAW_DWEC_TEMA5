@@ -30,9 +30,9 @@
     <hr>
     <?php
         
-        // include_once("vista/ajax_prueba1.php"); // Envío con AJAX de texto plano
+        include_once("vista/ajax_prueba1.php"); // Envío con AJAX de texto plano
         // include_once("vista/ajax_fichero1.php"); // Acceso con AJAX a fichero JSON
-        include_once("vista/ajax_prueba2.php"); // Envío con AJAX para registrar/loguearte con usuario y password
+        // include_once("vista/ajax_prueba2.php"); // Envío con AJAX para registrar/loguearte con usuario y password
     ?>
     <br>
     <!-- <button id="btn_limpiarConsola" onclick="console.clear()" style="margin: 0.6em 0">Limpiar Consola</button> -->

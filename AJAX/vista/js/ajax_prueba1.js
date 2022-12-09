@@ -42,7 +42,7 @@ f_cargaDatos = function (){
     * objetoAJAX.open(method,url,async,user,psw);
     */
     let method = "GET";
-    let url = `controlador/ajax_prueba1.php?${input_usuario.getAttribute("name")}=${input_usuario.value}`;
+    let url = `controlador/controlador_prueba1.php?${input_usuario.getAttribute("name")}=${input_usuario.value}`;
     console.log(url);
     let async = true;
 
@@ -52,7 +52,7 @@ f_cargaDatos = function (){
     // --------------------------------------
 
     // EL CLIENTE PERMACENECE A LA ESCUCHA, ESPERANDO RESPUESTA DEL SERVIDOR
-    //** IMPORTANTE: La escucha hay que hacerla antes del SEND(). Puede estar antes o después del open, pero siempre antes de enviar la petición. **/
+    //* IMPORTANTE: La escucha hay que hacerla antes del SEND(). Puede estar antes o después del open, pero siempre antes de enviar la petición. */
     objetoAJAX.addEventListener('readystatechange', function(){ //NOTA: No le gusta la función flecha '()=>'
     // objetoAJAX.onreadystatechange = ()=>{
         switch(this.readyState){
@@ -83,8 +83,10 @@ f_cargaDatos = function (){
                     // Si es nulo o está indefinido, deberemos insertarlo en el HTML
                     if(respuestaServidor === null || respuestaServidor === undefined){
                         
+                        respuestaServidor = `<p id="respuestaServidor">${this.responseText}</p>`;
+
                         // Insertamos la respuesta al final del div contenedor 
-                        contenedor_ajax.insertAdjacentHTML("beforeend",`<p id="respuestaServidor">${this.responseText}</p>`);
+                        contenedor_ajax.insertAdjacentHTML("beforeend", respuestaServidor);
 
                     }else{// Si no, sólo tenemos que cambiar su contenido.
                         
