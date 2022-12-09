@@ -1,3 +1,11 @@
+/*****************************
+** CONSTANTES GLOBALES **
+*****************************/
+const AFTER_END     =     `afterend`;
+const AFTER_BEGIN   =     `afterbegin`;
+const BEFORE_END   =     `beforeend`;
+const BEFORE_BEGIN   =     `beforebegin`;
+
 /*
 * VARIABLES GLOBALES
 */

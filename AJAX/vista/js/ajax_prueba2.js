@@ -61,10 +61,11 @@ window.addEventListener("load", ()=>{
 
             // Comprueba el campo pasado por parámetro
             f_compruebaCampos(evento.target);
+            // console.log(evento.target);
 
             Object.keys(obj_comprobacionCampos).forEach(function(valorActual, indice, array){
                 if(obj_comprobacionCampos[valorActual] === false){
-                    console.log(`obj_comprobacionCampos[${valorActual}] === false`);
+                    // console.log(`obj_comprobacionCampos[${valorActual}] === false`);
                     
                     // El botón de 'Enviar' debe seguir deshabilitado si algún campo no se ha validado
                     btn_enviar.disabled = true;
@@ -74,7 +75,7 @@ window.addEventListener("load", ()=>{
                 }
                                 
                 // CONSOLE: recorremos el objeto que contiene los booleanos de comprobación de cada campo a enviar
-                console.log(valorActual, obj_comprobacionCampos[valorActual]);
+                // console.log(valorActual, obj_comprobacionCampos[valorActual]);
 
                 // Si el código llega hasta aquí, es que ha validado todos los campos, y ya podemos habilitar el botón de 'Enviar' al servidor
                 btn_enviar.disabled = false;
@@ -203,13 +204,14 @@ f_cargaDatos = function (){
     * objetoAJAX.open(method,url,async,user,psw);
     */
     let method = "POST";
-    let url = `controlador/ajax_prueba2.php`;
-    console.log(url);
+    let url = `controlador/controlador_prueba2.php`;
+    let async = true;
+    // console.log(url);
 
     /*
     * CONFIGURAMOS LA PETICIÓN ANTES DE ENVIARLA
     */
-    objetoAJAX.open(method,url); //objetoAJAX.open(method,url,async,user,psw);
+    objetoAJAX.open(method,url,async); //objetoAJAX.open(method,url,async,user,psw);
     
     // --------------------------------------
 
@@ -221,6 +223,9 @@ f_cargaDatos = function (){
      */
     objetoAJAX.addEventListener('load', function(){ //NOTA: No le gusta la función flecha '()=>'
     
+        // Ver cabeceras de la petición HTTP recibida
+        console.log(this.getAllResponseHeaders());
+
         /**
          * objetoAJAX.readyState: "4 => solicitud finalizada y respuesta lista"
          * objetoAJAX.status: "200 => OK" 
@@ -233,7 +238,7 @@ f_cargaDatos = function (){
         if(html_respuestaServidor === null || html_respuestaServidor === undefined){
             
             // Insertamos la respuesta al final del div contenedor 
-            contenedor_ajax.insertAdjacentHTML("beforeend",`<p id="respuestaServidor">${this.responseText}</p>`);
+            contenedor_ajax.insertAdjacentHTML(BEFORE_END,`<p id="respuestaServidor">${this.responseText}</p>`);
 
         }else{// Si no, sólo tenemos que cambiar su contenido.
             
@@ -248,9 +253,17 @@ f_cargaDatos = function (){
     * SE ENVÍA LA PETICIÓN AL SERVIDOR
     */
 
+    
+    console.log(objetoAJAX.getAllResponseHeaders());
+
+    // Configuramos la cabecera de la petición HTTP para indicar que tipo de dato va a viajar
+    objetoAJAX.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+
+    console.log(objetoAJAX.getAllResponseHeaders());
+
     // Preparando los datos a enviar por método POST
     let datosPOST = `${input_usuario.getAttribute("name")}=${input_usuario.value}&${input_password.getAttribute("name")}=${input_password.value}`;
-    
+    console.log(datosPOST);
     objetoAJAX.send(datosPOST); // Envío POST
 
     // --------------------------------------

@@ -4,17 +4,24 @@
 // echo "</pre>";
 
 // VARIABEL GLOBAL AL DOCUMENTO
-$usuario; // Almacena el nombre de usuario
-$password; // Almacena la contraseña
-$mensaje; // Almacena el mensaje a mostrar
+$usuario=""; // Almacena el nombre de usuario
+$password=""; // Almacena la contraseña
+$mensaje=""; // Almacena el mensaje a mostrar
 
-if($_SERVER["REQUEST_METHOD"] == "GET"){
-    
-}else if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+    // var_dump($_POST);
+
     if(isset($_POST['name_usuario'])){
         $usuario = $_POST['name_usuario'];
-    }else if(isset($_POST['name_password'])){
+    }else{
+        $usuario = 'El usuario no ha sido rellenado';
+    }
+
+    if(isset($_POST['name_password'])){
         $password = $_POST['name_password'];
+    }else{
+        $password = 'La contraseña no ha sido rellenada';
     }
 }
 

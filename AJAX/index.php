@@ -17,8 +17,12 @@
  
 
   <!-- SCRIPTS JS -->
-  <script src="vista/js/selectorVista.js"></script>
+  <!-- <script src="vista/js/selectorVista.js"></script> -->
   <script src="vista/js/utiles.js"></script>
+ 
+
+
+  
   
 
   
@@ -29,12 +33,25 @@
   <!-- AQUI EL CÓDIGO HTML PRINCIPAL -->
   <div class="itemPrincipal">
     <hr>
+
+
+    <?php
+      // include_once("vista/ajax_prueba1.php");
+      // include_once("vista/ajax_fichero1.php");
+      include_once("vista/ajax_prueba2.php");
+
+    ?>
+
+
     <!-- selecciona la vista que se va a mostrar   -->
-    <label for="selectorVista">Selecciona la vista que quiere mostrar: </label>
+    <!-- <label for="selectorVista">Selecciona la vista que quiere mostrar: </label>
     <select id="selectorVista" name="selectorVista"></select>
     <br>
     <br>
-    <div id="cargaVista"></div>
+    <div id="cargaVista"></div> -->
+
+
+    
     <br>
     <!-- <button id="btn_limpiarConsola" onclick="console.clear()" style="margin: 0.6em 0">Limpiar Consola</button> -->
     <br>

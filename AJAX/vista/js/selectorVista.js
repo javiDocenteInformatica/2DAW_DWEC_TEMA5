@@ -1,10 +1,4 @@
-/*****************************
-** CONSTANTES GLOBALES **
-*****************************/
-const AFTER_END     =     `afterend`;
-const AFTER_BEGIN   =     `afterbegin`;
-const BEFORE_END   =     `beforend`;
-const BEFORE_BEGIN   =     `beforebegin`;
+
 /*****************************
 ** VARIABLES GLOBALES **
 *****************************/
@@ -19,6 +13,7 @@ const arrayRutasVistas = ["vista/ajax_prueba1.php","vista/ajax_prueba2.php","vis
 
 
 
+
 let arrayVistas; // array que almacena el codigo PHP que incluye las vistas
 
 
@@ -26,7 +21,7 @@ let arrayVistas; // array que almacena el codigo PHP que incluye las vistas
 ** FUNCIONES GLOBALES **
 *****************************/
 let f_creaCadenaOpcionesSelect; // función que devuelve una cadena con las opciones que van dentro de un elemento 'select'
-let f_creaVista; // función que inserta la vista en el DOM
+let f_insertaNodoHTML; // función que inserta nodo en el DOM
 let f_includeHTML_AJAX; // función que realiza la petición AJAX al servidor para incluir HTML
 
 
@@ -43,6 +38,7 @@ window.addEventListener("load", function(){
     selectorVista.insertAdjacentHTML(AFTER_BEGIN, f_creaCadenaOpcionesSelect(arrayRutasVistas));
 
     selectorVista.addEventListener("change",function (evento){
+
         // incluye la vista que seleccionemos
         f_includeHTML_AJAX(arrayRutasVistas[evento.target.value]);
     });
@@ -59,7 +55,7 @@ window.addEventListener("load", function(){
 /*****************************
 ** DEFINICIÓN DE FUNCIONES **
 *****************************/
-f_creaVista = (p_nodoPadreHTML, p_posicion, p_cadenaNodoHijoHTML)=>{
+f_insertaNodoHTML = (p_nodoPadreHTML, p_posicion, p_cadenaNodoHijoHTML)=>{
     
     // Con esto eliminamos los nodos que haya, antes de añadir el nuevo contenido
     while(p_nodoPadreHTML.firstChild){
@@ -97,13 +93,15 @@ f_includeHTML_AJAX = (rutaFichero)=>{
     objetoAJAX.addEventListener("readystatechange", function(){
         if(this.readyState == 4){ // petición finalizada y respuesta lista
             if(this.status == 200){ // Estado de la petición HTTP OK
-                f_creaVista(div_cargaVista,AFTER_BEGIN, this.responseText);
+                f_insertaNodoHTML(div_cargaVista,AFTER_BEGIN, this.responseText);
             }else{
                 window.alert(`Algo ha salido mal. this.status: ${this.status} - ${this.statusText}`);
                 console.error(`Algo ha salido mal. this.status: ${this.status} - ${this.statusText}`)
             }
         }
     });
+
+    objetoAJAX.getResponseHeader("content-type");
 
     // se envía la petición, en este caso al ser un fichero, se hará con el método 'GET'
     objetoAJAX.send();

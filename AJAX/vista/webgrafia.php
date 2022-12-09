@@ -124,9 +124,26 @@
         </li>
 
         <li class="tooltip">
+            <span class="tooltiptext">w3schools</span>
+            <a href="https://www.w3schools.com/xml/ajax_xmlhttprequest_send.asp" target="_blank">AJAX - Send a Request To a Server</a>
+        </li>
+
+        <li class="tooltip">
+            <span class="tooltiptext">geeksforgeeks.org</span>
+            <a href="https://www.geeksforgeeks.org/http-headers-content-type/" target="_blank">HTTP headers | Content-Type</a>
+        </li>
+
+        <li class="tooltip">
+            <span class="tooltiptext">stackoverflow.com</span>
+            <a href="https://stackoverflow.com/questions/4526273/what-does-enctype-multipart-form-data-mean" target="_blank">Diferencias en el 'Content-Type' del HTTP Header</a>
+        </li>
+
+        <li class="tooltip">
             <span class="tooltiptext"></span>
             <a href="" target="_blank"></a>
         </li>
+
+        
 
         
 
