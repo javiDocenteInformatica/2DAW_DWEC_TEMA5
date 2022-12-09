@@ -17,6 +17,7 @@
  
 
   <!-- SCRIPTS JS -->
+  <script src="vista/js/selectorVista.js"></script>
   <script src="vista/js/utiles.js"></script>
   
 
@@ -28,12 +29,12 @@
   <!-- AQUI EL CÓDIGO HTML PRINCIPAL -->
   <div class="itemPrincipal">
     <hr>
-    <?php
-        
-        include_once("vista/ajax_prueba1.php"); // Envío con AJAX de texto plano
-        // include_once("vista/ajax_fichero1.php"); // Acceso con AJAX a fichero JSON
-        // include_once("vista/ajax_prueba2.php"); // Envío con AJAX para registrar/loguearte con usuario y password
-    ?>
+    <!-- selecciona la vista que se va a mostrar   -->
+    <label for="selectorVista">Selecciona la vista que quiere mostrar: </label>
+    <select id="selectorVista" name="selectorVista"></select>
+    <br>
+    <br>
+    <div id="cargaVista"></div>
     <br>
     <!-- <button id="btn_limpiarConsola" onclick="console.clear()" style="margin: 0.6em 0">Limpiar Consola</button> -->
     <br>
