@@ -300,8 +300,23 @@
         </li>
 
         <li class="tooltip">
-            <span class="tooltiptext">w3schools</span>
+            <span class="tooltiptext">mysqltutorial.org</span>
             <a href="https://www.w3schools.com/MySQL/default.asp" target="_blank">MySQL Tutorial</a>
+        </li>
+
+        <li class="tooltip">
+            <span class="tooltiptext"></span>
+            <a href="https://www.mysqltutorial.org/" target="_blank">MySQL Tutorial</a>
+        </li>
+
+        <li class="tooltip">
+            <span class="tooltiptext">enmimaquinafunciona.com</span>
+            <a href="https://www.enmimaquinafunciona.com/pregunta/47674/quotloginquot-en-phpmyadmin-a-traves-de-diferentes-usuarios" target="_blank">"login" en phpmyadmin a través de diferentes usuarios</a>
+        </li>
+
+        <li class="tooltip">
+            <span class="tooltiptext"></span>
+            <a href="" target="_blank"></a>
         </li>
 
         
@@ -335,6 +350,16 @@
         <li class="tooltip">
             <span class="tooltiptext">www.php.net</span>
             <a href="https://www.php.net/manual/es/reserved.variables.php" target="_blank">Variables predefinidas PHP</a>
+        </li>
+
+        <li class="tooltip">
+            <span class="tooltiptext">openwebinars</span>
+            <a href="https://openwebinars.net/academia/portada/php-mysql/" target="_blank">PHP y MySQL: Creando sitios dinámicos</a>
+        </li>
+
+        <li class="tooltip">
+            <span class="tooltiptext"></span>
+            <a href="" target="_blank"></a>
         </li>
 
         <li class="tooltip">
