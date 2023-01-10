@@ -1,9 +1,5 @@
-//const url = "controlador/controlador_ajax_methods.php";
-const configPeticion = {
-    url: "./controlador/controlador_ajax_methods.php",
-    method: "POST",
-    async: true
-};
+
+const url = "/controlador/controlador_ajax_methods.php";
 
 // load DOM
 window.addEventListener("load", function (evento) {
@@ -14,25 +10,21 @@ window.addEventListener("load", function (evento) {
 
 
     btn_enviar.addEventListener("click", function (evento) {
-        usa_XMLHttpRequest(input_usuario, configPeticion, respuesta_servidor);
+        usa_XMLHttpRequest(input_usuario, url, "POST", respuesta_servidor);
     });
 
+    const myHeaders = new Headers();
+    console.log(myHeaders);
 
 });
 
 
-function usa_XMLHttpRequest(p_htmlDatos, p_configPeticion, p_htmlRespuesta) {
+function usa_XMLHttpRequest(p_htmlDatos, p_url, p_metodo, p_htmlRespuesta) {
 
-    // crea el objeto de petición ajax
+    /* CREACIÓN DE OBJETO AJAX */
     let peticionAjax = new XMLHttpRequest();
 
-
-
-    // se configura la petición
-    peticionAjax.open(p_configPeticion.method, p_configPeticion.url, p_configPeticion.async);
-
-
-    // modo escucha
+    /* MODO ESCUCHA - DEBE HACERSE ANTES DE ENVIAR LA PETICIÓN */
     peticionAjax.addEventListener("readystatechange", function () {
 
         // Si todo ha ido correcto
@@ -47,25 +39,42 @@ function usa_XMLHttpRequest(p_htmlDatos, p_configPeticion, p_htmlRespuesta) {
         }
 
         // muestra todas las cabeceras HTTP de la respuesta
-        console.log(`%c ${this.getAllResponseHeaders()}`, `color: red`);
+        console.log(`%c${this.getAllResponseHeaders()}`, `color:yellow`);
 
     });
 
+    /* CONFIGURACIÓN DE LA PETICIÓN */
+    peticionAjax.open(
+        p_metodo/* method */,
+        p_url /* url */,
+        true /* async=true */
+    );
+
+
+
+
+    /* ENVÍO DE LA PETICIÓN */
 
     // Antes de enviar la petición podemos incluso cambiar las cabeceras http 
     // por defecto el Content-Type: 'text/html; charset=utf-8'
     // AYUDA: https://www.geeksforgeeks.org/http-headers-content-type/
 
-    // Para POST necesitamos: Content-Type:  --> Si no, no se enviarán los datos
-    peticionAjax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    if (p_metodo == "POST") {
 
-    // se envia la petición
-    let datosEnvio = `${p_htmlDatos.name}=${p_htmlDatos.value}`;
-    console.log(datosEnvio);
+        // Para POST necesitamos: Content-Type: application/x-www-form-urlencoded --> Si no, no se enviarán los datos
+        peticionAjax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    if (p_configPeticion.method == "POST") {
+        // se envia la petición
+        let datosEnvio = `${p_htmlDatos.name}=${p_htmlDatos.value}`;
+        console.log(datosEnvio);
+
+        // envío de la petición
         peticionAjax.send(datosEnvio);
-    } else {
+
+    } else if (p_metodo == "GET") {
+        peticionAjax.setRequestHeader("Content-Type", "text/html;charset=utf-8");
+
+        // envío de la petición
         peticionAjax.send();
     }
 
@@ -74,8 +83,16 @@ function usa_XMLHttpRequest(p_htmlDatos, p_configPeticion, p_htmlRespuesta) {
 }
 
 
-function usa_fetch(configPeticion) {
-    fetch(p_configPeticion.url, configPeticion)
+function usa_fetch(p_url, p_metodo) {
+    fetch(p_url, {
+        method: p_metodo,
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: {
+
+        }
+    })
         .then(function (respuesta) {
             // Array.from(respuesta.body).forEach(function(elemento,indice,array){
             //     divRespuesta.innerHTML = `<p>${elemento}</p>`;    

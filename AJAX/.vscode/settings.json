@@ -6,5 +6,6 @@
     "sql-formatter.uppercase": true,
     "files.autoSave": "afterDelay",
     "editor.wordWrap": "wordWrapColumn",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.minimap.enabled": true
 }
