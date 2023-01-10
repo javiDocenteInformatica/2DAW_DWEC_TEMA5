@@ -3,5 +3,8 @@
         "**/.vscode": true,
         "**/*.zip": true
     },
-    "sql-formatter.uppercase": true
+    "sql-formatter.uppercase": true,
+    "files.autoSave": "afterDelay",
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.formatOnSave": true
 }
