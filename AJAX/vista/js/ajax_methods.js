@@ -1,5 +1,5 @@
 
-const url = "/controlador/controlador_ajax_methods.php";
+const url = "./controlador/controlador_ajax_methods.php";
 
 // load DOM
 window.addEventListener("load", function (evento) {
@@ -9,12 +9,17 @@ window.addEventListener("load", function (evento) {
     let respuesta_servidor = document.querySelector("#respuesta_servidor");
 
 
+    // EVENTO CLICK 'ENVIAR'
     btn_enviar.addEventListener("click", function (evento) {
-        usa_XMLHttpRequest(input_usuario, url, "POST", respuesta_servidor);
-    });
 
-    const myHeaders = new Headers();
-    console.log(myHeaders);
+        /** XMLHttpRequest **/
+        // usa_XMLHttpRequest(input_usuario, url, "POST", respuesta_servidor);
+
+        /** FETCH - THEN - CATCH **/
+        usa_fetch(input_usuario, url, "POST", respuesta_servidor);
+
+        /** ASYNC - AWAIT **/
+    });
 
 });
 
@@ -83,30 +88,66 @@ function usa_XMLHttpRequest(p_htmlDatos, p_url, p_metodo, p_htmlRespuesta) {
 }
 
 
-function usa_fetch(p_url, p_metodo) {
-    fetch(p_url, {
-        method: p_metodo,
+function usa_fetch(p_htmlDatos, p_url, p_metodo, p_htmlRespuesta) {
+
+    /*
+    // Fetch API : https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+    fetch(url, {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: {
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(data) // body data type must match "Content-Type" header
+      });
+      */
 
-        }
+    let objetoDatos = {
+        [p_htmlDatos.name]: p_htmlDatos.value
+    };
+    console.log(JSON.stringify(objetoDatos));
+
+    fetch(p_url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: JSON.stringify(objetoDatos)
+        // body: objetoDatos
     })
-        .then(function (respuesta) {
-            // Array.from(respuesta.body).forEach(function(elemento,indice,array){
-            //     divRespuesta.innerHTML = `<p>${elemento}</p>`;    
-            // });
+        .then(function (response) {
+            if (!response.ok) { // Si hubo un problema en la respuesta desde el SERVIDOR
+                throw new Error(`
+                <h3>Status:</h3>
+                <p>${response.status}</p>
+                <h3> Status Text:</h3>
+                <p>${response.statusText}</p>
+                `);
+            } else {
+                console.log(response); // Es una: Response
+                // return response.json();
+                return response.text();
+            }
 
-            divRespuesta.innerHTML = `<p>${elemento}</p>`;
 
-            console.log(respuesta);
+        })
+        .then(function (datos) {
+            console.log(datos); // Es una: 
+            p_htmlRespuesta.innerHTML += `<p>${datos}</p>`;
         })
         .catch(function (error) {
-            divRespuesta.innerHTML += `<p>${error}</p>`;
-            divRespuesta.innerHTML += `<p>${datos}</p>`;
+            p_htmlRespuesta.innerHTML += `<p>${error}</p>`;
+            // p_htmlRespuesta.innerHTML += `<p>${error}</p>`;
         })
         ;
+
+
 }
 
 function usa_async_await() {

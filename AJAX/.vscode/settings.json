@@ -5,7 +5,9 @@
     },
     "sql-formatter.uppercase": true,
     "files.autoSave": "afterDelay",
-    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrap": "bounded",
     "editor.formatOnSave": true,
-    "editor.minimap.enabled": true
+    "editor.minimap.enabled": true,
+    "editor.wordWrapColumn": 140,
+    "html.format.wrapLineLength": 0
 }
