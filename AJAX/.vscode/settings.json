@@ -9,5 +9,6 @@
     "editor.formatOnSave": true,
     "editor.minimap.enabled": true,
     "editor.wordWrapColumn": 140,
-    "html.format.wrapLineLength": 0
+    "html.format.wrapLineLength": 0,
+    "files.autoSaveDelay": 5000
 }

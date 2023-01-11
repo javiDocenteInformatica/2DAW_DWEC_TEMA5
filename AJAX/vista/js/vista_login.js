@@ -6,10 +6,10 @@ const url = "controlador/controlador_login.php";
 // load DOM
 window.addEventListener("load", function (evento) {
 
-   let form_login = document.querySelector("#form_login");
-   let div_respuesta_ajax = document.querySelector("#respuesta_ajax");
+    let form_login = document.querySelector("#form_login");
+    let div_respuesta_ajax = document.querySelector("#respuesta_ajax");
 
-   form_login.action=url; // aquí añadimos la url a la que envía la petición
+    form_login.action = url; // aquí añadimos la url a la que envía la petición
 
     // EVENTO CLICK 'ENVIAR'
     form_login.addEventListener("submit", function (evento) {
@@ -18,7 +18,7 @@ window.addEventListener("load", function (evento) {
         evento.preventDefault();
 
         /** XMLHttpRequest **/
-        usa_XMLHttpRequest(form_login,div_respuesta_ajax);
+        usa_XMLHttpRequest(form_login, div_respuesta_ajax);
 
         /** FETCH - THEN - CATCH **/
         // usa_fetch_json(input_usuario, url, "POST", respuesta_servidor);
@@ -34,7 +34,7 @@ function usa_XMLHttpRequest(form_login, div_respuesta_ajax) {
 
     /* CREACIÓN DE OBJETO AJAX */
     let peticionAjax = new XMLHttpRequest();
-    
+
 
     /* MODO ESCUCHA - DEBE HACERSE ANTES DE ENVIAR LA PETICIÓN */
     peticionAjax.addEventListener("readystatechange", function () {
@@ -73,13 +73,13 @@ function usa_XMLHttpRequest(form_login, div_respuesta_ajax) {
 
     /* ENVÍO DE LA PETICIÓN */
 
-    
+
     // AYUDA: https://www.geeksforgeeks.org/http-headers-content-type/
-
+    let formData = new FormData(form_login);
     // envío de la petición
-    peticionAjax.send(form_login);
+    peticionAjax.send(formData);
 
-    
+
 
 }
 
