@@ -1,6 +1,8 @@
 
 const url = "./controlador/controlador_ajax_methods.php";
 
+
+
 // load DOM
 window.addEventListener("load", function (evento) {
 
@@ -12,12 +14,14 @@ window.addEventListener("load", function (evento) {
     // EVENTO CLICK 'ENVIAR'
     btn_enviar.addEventListener("click", function (evento) {
 
+        // evento.preventDefault();
+
         /** XMLHttpRequest **/
-        // usa_XMLHttpRequest(input_usuario, url, "POST", respuesta_servidor);
+        usa_XMLHttpRequest(input_usuario, url, "POST", respuesta_servidor);
 
         /** FETCH - THEN - CATCH **/
         // usa_fetch_json(input_usuario, url, "POST", respuesta_servidor);
-        usa_fetch_form(input_usuario, url, "POST", respuesta_servidor);
+        // usa_fetch_form(input_usuario, url, "POST", respuesta_servidor);
 
         /** ASYNC - AWAIT **/
     });
@@ -29,6 +33,7 @@ function usa_XMLHttpRequest(p_htmlDatos, p_url, p_metodo, p_htmlRespuesta) {
 
     /* CREACIÓN DE OBJETO AJAX */
     let peticionAjax = new XMLHttpRequest();
+    
 
     /* MODO ESCUCHA - DEBE HACERSE ANTES DE ENVIAR LA PETICIÓN */
     peticionAjax.addEventListener("readystatechange", function () {
