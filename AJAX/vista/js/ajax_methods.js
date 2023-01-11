@@ -16,7 +16,8 @@ window.addEventListener("load", function (evento) {
         // usa_XMLHttpRequest(input_usuario, url, "POST", respuesta_servidor);
 
         /** FETCH - THEN - CATCH **/
-        usa_fetch(input_usuario, url, "POST", respuesta_servidor);
+        // usa_fetch_json(input_usuario, url, "POST", respuesta_servidor);
+        usa_fetch_form(input_usuario, url, "POST", respuesta_servidor);
 
         /** ASYNC - AWAIT **/
     });
@@ -88,7 +89,7 @@ function usa_XMLHttpRequest(p_htmlDatos, p_url, p_metodo, p_htmlRespuesta) {
 }
 
 
-function usa_fetch(p_htmlDatos, p_url, p_metodo, p_htmlRespuesta) {
+function usa_fetch_json(p_htmlDatos, p_url, p_metodo, p_htmlRespuesta) {
 
     /*
     // Fetch API : https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
@@ -113,13 +114,12 @@ function usa_fetch(p_htmlDatos, p_url, p_metodo, p_htmlRespuesta) {
     console.log(JSON.stringify(objetoDatos));
 
     fetch(p_url, {
-        method: 'POST',
+        method: p_metodo,
         headers: {
             'Content-Type': 'application/json'
             // 'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: JSON.stringify(objetoDatos)
-        // body: objetoDatos
     })
         .then(function (response) {
             if (!response.ok) { // Si hubo un problema en la respuesta desde el SERVIDOR
@@ -131,7 +131,6 @@ function usa_fetch(p_htmlDatos, p_url, p_metodo, p_htmlRespuesta) {
                 `);
             } else {
                 console.log(response); // Es una: Response
-                // return response.json();
                 return response.text();
             }
 
@@ -143,12 +142,75 @@ function usa_fetch(p_htmlDatos, p_url, p_metodo, p_htmlRespuesta) {
         })
         .catch(function (error) {
             p_htmlRespuesta.innerHTML += `<p>${error}</p>`;
-            // p_htmlRespuesta.innerHTML += `<p>${error}</p>`;
         })
         ;
 
 
 }
+
+function usa_fetch_form(p_htmlDatos, p_url, p_metodo, p_htmlRespuesta) {
+
+    /*
+    // Fetch API : https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+    fetch(url, {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(data) // body data type must match "Content-Type" header
+      });
+      */
+
+    let formulario = new FormData();
+
+    formulario.append(p_htmlDatos.name, p_htmlDatos.value);
+
+
+    console.log(formulario); // Es un: object 'FormData'
+    Array.from(formulario.entries()).forEach(function (valor, indice, array) { console.log(`${valor[0]}: ${valor[1]}`); });
+
+    fetch(p_url, {
+        method: p_metodo,
+        /*headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },*/
+        body: formulario
+    })
+        .then(function (response) {
+            if (!response.ok) { // Si hubo un problema en la respuesta desde el SERVIDOR
+                throw new Error(`
+                <h3>Status:</h3>
+                <p>${response.status}</p>
+                <h3> Status Text:</h3>
+                <p>${response.statusText}</p>
+                `);
+            } else {
+                console.log(response); // Es un: object 'Response'
+
+                return response.text();
+            }
+
+
+        })
+        .then(function (datos) {
+            console.log(datos); // Es un: string
+            p_htmlRespuesta.innerHTML += `<p>${datos}</p>`;
+        })
+        .catch(function (error) {
+            p_htmlRespuesta.innerHTML += `<p>${error}</p>`;
+        })
+        ;
+
+
+
+}
+
 
 function usa_async_await() {
 

@@ -1,14 +1,16 @@
 <?php
 
-$usuario_name = null;
-$_POST = file_get_contents('php://input');
+$usuario_name = "null";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    // echo file_get_contents('php://input');
-    // echo json_decode(file_get_contents('php://input'), true);
-    $_POST = json_decode(file_get_contents('php://input'), true);
-    print_r($_POST);
+
+    // RECIBE JSON
+    // $_POST = json_decode(file_get_contents('php://input'), true);
+    // echo "<pre>" . print_r($_POST) . "</pre>";
+
+    // RECIBE FORMULARIO
+    // No habría que hacer nada más, sería igual que si lo recibes de un formulario de HTML
 
 
 
@@ -16,13 +18,21 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $usuario_name = $_POST["usuario_name"];
     }
 } else {
+    // echo "aqui";
     print_r($_GET);
+
     if (isset($_GET["usuario_name"])) {
         $usuario_name = $_GET["usuario_name"];
     }
 }
 
+
+
+
+
+
 ?>
-<h1>
-    Bienvenido al Servidor: '<?php echo $usuario_name ?>' !!
-</h1>
+
+<?php
+require_once('../vista/vista_ajax_methods.php');
+?>
