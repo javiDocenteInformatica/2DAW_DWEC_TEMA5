@@ -2,7 +2,7 @@
 <div id="contenedor_ajax">
     <fieldset>
         <legend>FORMULARIO LOGIN</legend>
-        <form id="form_login" name="form_login" action="" method="POST" enctype="multipart-form-data">
+        <form id="form_login" name="form_login" action="" method="POST" enctype="multipart-form-data" autocomplete="on">
             <!-- BOTÓN - ENVÍO DE DATOS -->
 
             <br>

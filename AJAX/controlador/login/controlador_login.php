@@ -1,9 +1,7 @@
 <?php
 
 $usuario_logueado = false;
-// $usuario = "null";
-// $password = "null";
-// $file = "null";
+$image_path = "null";
 
 $usuario_check = "javi";
 $password_check = "0000";
@@ -31,17 +29,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
     // NOS FALTA TRATAR LA IMAGEN Y ENVIARSELA AL CLIENTE PARA QUE SE MUESTRE
+    require_once("controlador_files.php");
+
 }
 
 // echo "FUNCIONA <br>";
 
 ?>
-
+<br>
 <?php
 if ($usuario_logueado) {
-    require_once('../vista/respuesta_vista_login_correcto.php');
+    require_once('../../vista/respuesta_vista_login_correcto.php');
 } else {
-    require_once('../vista/respuesta_vista_login_incorrecto.php');
+    require_once('../../vista/respuesta_vista_login_incorrecto.php');
 }
 
 ?>

@@ -1,5 +1,5 @@
 
-const url = "controlador/controlador_login.php";
+const url = "controlador/login/controlador_login.php";
 
 
 
@@ -16,6 +16,7 @@ window.addEventListener("load", function (evento) {
 
         console.log(evento.target);
         evento.preventDefault();
+
 
         /** XMLHttpRequest **/
         usa_XMLHttpRequest(form_login, div_respuesta_ajax);
@@ -78,6 +79,12 @@ function usa_XMLHttpRequest(form_login, div_respuesta_ajax) {
     let formData = new FormData(form_login);
     // envío de la petición
     peticionAjax.send(formData);
+
+
+    Array.from(formData.entries()).forEach(function (parKeyValue, indice, array) {
+        console.log(`${parKeyValue}`);
+    })
+
 
 
 

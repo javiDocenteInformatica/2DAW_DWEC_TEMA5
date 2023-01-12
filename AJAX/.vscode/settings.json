@@ -4,7 +4,7 @@
         "**/*.zip": true
     },
     "sql-formatter.uppercase": true,
-    "files.autoSave": "afterDelay",
+    "files.autoSave": "off",
     "editor.wordWrap": "bounded",
     "editor.formatOnSave": true,
     "editor.minimap.enabled": true,
