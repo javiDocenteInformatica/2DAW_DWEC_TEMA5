@@ -1,5 +1,8 @@
 <?php
 
+// IMPORTS
+include_once("../depuracion.php");
+
 $usuario_logueado = false;
 $image_path = "null";
 

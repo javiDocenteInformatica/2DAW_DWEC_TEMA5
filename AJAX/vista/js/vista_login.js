@@ -19,11 +19,11 @@ window.addEventListener("load", function (evento) {
 
 
         /** XMLHttpRequest **/
-        usa_XMLHttpRequest(form_login, div_respuesta_ajax);
+        // usa_XMLHttpRequest(form_login, div_respuesta_ajax);
 
         /** FETCH - THEN - CATCH **/
-        // usa_fetch_json(input_usuario, url, "POST", respuesta_servidor);
-        // usa_fetch_form(input_usuario, url, "POST", respuesta_servidor);
+        usa_fetch_form(form_login, div_respuesta_ajax);
+        // usa_fetch_json(form_login, div_respuesta_ajax);
 
         /** ASYNC - AWAIT **/
     });
@@ -31,6 +31,7 @@ window.addEventListener("load", function (evento) {
 });
 
 
+// XMLHttpRequest
 function usa_XMLHttpRequest(form_login, div_respuesta_ajax) {
 
     /* CREACIÓN DE OBJETO AJAX */
@@ -75,7 +76,9 @@ function usa_XMLHttpRequest(form_login, div_respuesta_ajax) {
     /* ENVÍO DE LA PETICIÓN */
 
 
-    // AYUDA: https://www.geeksforgeeks.org/http-headers-content-type/
+    // AYUDA: 
+    // PHP Headers: https://www.geeksforgeeks.org/http-headers-content-type/
+    // FormData: https://developer.mozilla.org/es/docs/Web/API/FormData
     let formData = new FormData(form_login);
     // envío de la petición
     peticionAjax.send(formData);
@@ -91,66 +94,9 @@ function usa_XMLHttpRequest(form_login, div_respuesta_ajax) {
 }
 
 
-function usa_fetch_json(p_htmlDatos, p_url, p_metodo, p_htmlRespuesta) {
 
-    /*
-    // Fetch API : https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-    fetch(url, {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        mode: 'cors', // no-cors, *cors, same-origin
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'same-origin', // include, *same-origin, omit
-        headers: {
-          'Content-Type': 'application/json'
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        redirect: 'follow', // manual, *follow, error
-        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify(data) // body data type must match "Content-Type" header
-      });
-      */
-
-    let objetoDatos = {
-        [p_htmlDatos.name]: p_htmlDatos.value
-    };
-    console.log(JSON.stringify(objetoDatos));
-
-    fetch(p_url, {
-        method: p_metodo,
-        headers: {
-            'Content-Type': 'application/json'
-            // 'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: JSON.stringify(objetoDatos)
-    })
-        .then(function (response) {
-            if (!response.ok) { // Si hubo un problema en la respuesta desde el SERVIDOR
-                throw new Error(`
-                <h3>Status:</h3>
-                <p>${response.status}</p>
-                <h3> Status Text:</h3>
-                <p>${response.statusText}</p>
-                `);
-            } else {
-                console.log(response); // Es una: Response
-                return response.text();
-            }
-
-
-        })
-        .then(function (datos) {
-            console.log(datos); // Es una: 
-            p_htmlRespuesta.innerHTML += `<p>${datos}</p>`;
-        })
-        .catch(function (error) {
-            p_htmlRespuesta.innerHTML += `<p>${error}</p>`;
-        })
-        ;
-
-
-}
-
-function usa_fetch_form(p_htmlDatos, p_url, p_metodo, p_htmlRespuesta) {
+// FETCH
+function usa_fetch_form(form_login, div_respuesta_ajax) {
 
     /*
     // Fetch API : https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
@@ -214,6 +160,67 @@ function usa_fetch_form(p_htmlDatos, p_url, p_metodo, p_htmlRespuesta) {
 }
 
 
+function usa_fetch_json(form_login, div_respuesta_ajax) {
+
+    /*
+    // Fetch API : https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+    fetch(url, {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(data) // body data type must match "Content-Type" header
+      });
+      */
+
+    let formData = new FormData(form_login);
+
+    //console.log(JSON.stringify(formData));
+
+    fetch(p_url, {
+        method: p_metodo,
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: JSON.stringify(objetoDatos)
+    })
+        .then(function (response) {
+            if (!response.ok) { // Si hubo un problema en la respuesta desde el SERVIDOR
+                throw new Error(`
+                <h3>Status:</h3>
+                <p>${response.status}</p>
+                <h3> Status Text:</h3>
+                <p>${response.statusText}</p>
+                `);
+            } else {
+                console.log(response); // Es una: Response
+                return response.text();
+            }
+
+
+        })
+        .then(function (datos) {
+            console.log(datos); // Es una: 
+            p_htmlRespuesta.innerHTML += `<p>${datos}</p>`;
+        })
+        .catch(function (error) {
+            p_htmlRespuesta.innerHTML += `<p>${error}</p>`;
+        })
+        ;
+
+
+}
+
+
+
+// ASYNC - AWAIT
 function usa_async_await() {
 
 }

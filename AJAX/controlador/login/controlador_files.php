@@ -8,15 +8,10 @@ $extensionFichero;
 
 if (isset($_FILES)) {
 
-
-
     $nombreYExtensionFichero = $_FILES["file"]["name"];
     $rutaDirectorioDestino = "../../modelo/uploads/";
     $rutaFicheroDestino = $rutaDirectorioDestino . $_FILES["file"]["name"];
     $extensionFichero = basename($_FILES["file"]["type"]);
-
-
-
 
     $ficheroSubido = move_uploaded_file($_FILES["file"]["tmp_name"], $rutaFicheroDestino);
 
@@ -64,30 +59,5 @@ function depuracion()
 
 }
 
-function echoH1($elemento)
-{
-    echo "<pre>";
-    echo "<h1>";
-    echo $elemento;
-    echo "</h1>";
-    echo "</pre>";
-}
 
-function echoP($elemento)
-{
-    echo "<pre>";
-    echo "<p>";
-    echo $elemento;
-    echo "</p>";
-    echo "</pre>";
-}
-
-function print_rP($array)
-{
-    echo "<pre>";
-    echo "<p>";
-    print_r($array);
-    echo "</p>";
-    echo "</pre>";
-}
 ?>
