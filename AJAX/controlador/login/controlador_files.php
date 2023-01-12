@@ -8,8 +8,6 @@ $extensionFichero;
 
 if (isset($_FILES)) {
 
-    echoH1("\$_FILES :");
-    print_rP($_FILES);
 
 
     $nombreYExtensionFichero = $_FILES["file"]["name"];
@@ -18,30 +16,18 @@ if (isset($_FILES)) {
     $extensionFichero = basename($_FILES["file"]["type"]);
 
 
-    // echo "getimagesize: " . print_r(getimagesize($_FILES["file"]["tmp_name"]));
-
-    echoH1("rutaFicheroDestino: ");
-    echoP($rutaFicheroDestino);
-
-    echoH1("rutaFicheroDestino: ");
-    echoP($rutaFicheroDestino);
-
-    echoH1("nombreYExtensionFichero: ");
-    echoP($nombreYExtensionFichero);
-
-    echoH1("extensionFichero: ");
-    echoP($extensionFichero);
 
 
     $ficheroSubido = move_uploaded_file($_FILES["file"]["tmp_name"], $rutaFicheroDestino);
 
     if ($ficheroSubido) {
-        echoP("Fichero subido con éxito");
+        echoH1("Fichero subido con éxito");
     } else {
-        echoP("Fallo al subir el fichero");
+        echoH1("Fallo al subir el fichero");
     }
 
 
+    // depuracion();
 
 
 }
@@ -52,6 +38,32 @@ if (isset($_FILES)) {
 
 
 <?php
+
+function depuracion()
+{
+
+    // echoH1("\$GLOBALS :");
+    // print_rP($GLOBALS);
+
+    echoH1("\$_FILES :");
+    print_rP($_FILES);
+
+
+    echoH1("rutaFicheroDestino: ");
+    echoP($GLOBALS["rutaFicheroDestino"]);
+
+    echoH1("rutaFicheroDestino: ");
+    echoP($GLOBALS["rutaFicheroDestino"]);
+
+    echoH1("nombreYExtensionFichero: ");
+    echoP($GLOBALS["nombreYExtensionFichero"]);
+
+    echoH1("extensionFichero: ");
+    echoP($GLOBALS["extensionFichero"]);
+
+
+}
+
 function echoH1($elemento)
 {
     echo "<pre>";
