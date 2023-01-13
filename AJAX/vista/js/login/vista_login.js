@@ -1,3 +1,5 @@
+// IMPORTS
+import * as Debug from '../depuracion.js';
 
 const url = "controlador/login/controlador_login.php";
 
@@ -14,15 +16,17 @@ window.addEventListener("load", function (evento) {
     // EVENTO CLICK 'ENVIAR'
     form_login.addEventListener("submit", function (evento) {
 
-        console.log(evento.target);
+        // consolaText(evento.target);
+
+        // previene que se envíe el formulario por defecto al pulsar 'submit'
         evento.preventDefault();
 
 
         /** XMLHttpRequest **/
-        // usa_XMLHttpRequest(form_login, div_respuesta_ajax);
+        usa_XMLHttpRequest(form_login, div_respuesta_ajax);
 
         /** FETCH - THEN - CATCH **/
-        usa_fetch_form(form_login, div_respuesta_ajax);
+        // usa_fetch_form(form_login, div_respuesta_ajax);
         // usa_fetch_json(form_login, div_respuesta_ajax);
 
         /** ASYNC - AWAIT **/
@@ -59,7 +63,7 @@ function usa_XMLHttpRequest(form_login, div_respuesta_ajax) {
         }
 
         // muestra todas las cabeceras HTTP de la respuesta
-        // console.log(`%c${this.getAllResponseHeaders()}`, `color:yellow`);
+        // consolaObject(this.getAllResponseHeaders());
 
     });
 
@@ -83,10 +87,8 @@ function usa_XMLHttpRequest(form_login, div_respuesta_ajax) {
     // envío de la petición
     peticionAjax.send(formData);
 
-
-    Array.from(formData.entries()).forEach(function (parKeyValue, indice, array) {
-        console.log(`${parKeyValue}`);
-    })
+    console.log(formData);
+    // Debug.consolaObject(formData.entries());
 
 
 
@@ -115,13 +117,10 @@ function usa_fetch_form(form_login, div_respuesta_ajax) {
       });
       */
 
-    let formulario = new FormData();
+    // FormData API: https://developer.mozilla.org/es/docs/Web/API/FormData
+    let formulario = new FormData(form_login);
+    consolaObject(formulario); // Es un: object 'FormData'
 
-    formulario.append(p_htmlDatos.name, p_htmlDatos.value);
-
-
-    console.log(formulario); // Es un: object 'FormData'
-    Array.from(formulario.entries()).forEach(function (valor, indice, array) { console.log(`${valor[0]}: ${valor[1]}`); });
 
     fetch(p_url, {
         method: p_metodo,
@@ -147,7 +146,7 @@ function usa_fetch_form(form_login, div_respuesta_ajax) {
 
         })
         .then(function (datos) {
-            console.log(datos); // Es un: string
+            consolaText(datos); // Es un: string
             p_htmlRespuesta.innerHTML += `<p>${datos}</p>`;
         })
         .catch(function (error) {
@@ -207,7 +206,7 @@ function usa_fetch_json(form_login, div_respuesta_ajax) {
 
         })
         .then(function (datos) {
-            console.log(datos); // Es una: 
+            consolaText(datos); // Es una: 
             p_htmlRespuesta.innerHTML += `<p>${datos}</p>`;
         })
         .catch(function (error) {

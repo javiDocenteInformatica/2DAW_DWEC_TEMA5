@@ -1,4 +1,4 @@
-<script src="vista/js/vista_login.js"></script>
+<script src="vista/js/login/vista_login.js" type="module"></script>
 <div id="contenedor_ajax">
     <fieldset>
         <legend>FORMULARIO LOGIN</legend>
