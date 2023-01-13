@@ -21,7 +21,7 @@
     <!-- AQUI EL CÓDIGO HTML PRINCIPAL -->
     <div class="itemPrincipal">
         <?php
-            include_once("vista/vista_login.php");
+        include_once("vista/vista_login.php");
         ?>
     </div>
 </body>

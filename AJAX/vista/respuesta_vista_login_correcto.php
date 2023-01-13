@@ -10,6 +10,6 @@ echo "<br>"
     ?>
 
 
-<button id="btn_ir_inicio" onclick="window.location.href='../index.php'">
+<button id="btn_ir_inicio" onclick="window.location.href='index.php'">
     Ir a Inicio
 </button>

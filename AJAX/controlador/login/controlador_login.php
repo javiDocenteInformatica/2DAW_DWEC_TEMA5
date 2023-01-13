@@ -15,13 +15,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // print_r($_POST);
     // Creamos variables por cada elemento asociativo del array $_POST
     // AYUDA: https://willi.am/blog/2009/01/14/converting-php-associative-arrays-to-variables/
+    $usuario = $_POST["usuario"];
     foreach ($_POST as $key => $value) {
         ${'post_' . $key} = $value;
     }
 
     if (isset($_POST["usuario"]) && isset($_POST["password"])) {
-        $post_usuario = $_POST["usuario"];
-        $post_password = $_POST["password"];
+        // $post_usuario = $_POST["usuario"];
+        // $post_password = $_POST["password"];
+
+
+        // AQUI VA LA CONSULTA A LA BASE DE DATOS
 
         if ($post_usuario === $usuario_check && $post_password === $password_check) {
             $usuario_logueado = true;

@@ -1,4 +1,5 @@
 <?php
+// https://www.w3schools.com/php/php_file_upload.asp
 
 $subidaOK = false;
 $nombreYExtensionFichero;

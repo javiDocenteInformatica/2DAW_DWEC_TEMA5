@@ -68,10 +68,7 @@ function usa_XMLHttpRequest(form_login, div_respuesta_ajax) {
     });
 
     /* CONFIGURACIÓN DE LA PETICIÓN */
-    peticionAjax.open(
-        form_login.method/* method */,
-        form_login.action /* url */,
-        true /* async=true */
+    peticionAjax.open(form_login.method, form_login.action, true /* async=true */
     );
 
 
@@ -84,11 +81,14 @@ function usa_XMLHttpRequest(form_login, div_respuesta_ajax) {
     // PHP Headers: https://www.geeksforgeeks.org/http-headers-content-type/
     // FormData: https://developer.mozilla.org/es/docs/Web/API/FormData
     let formData = new FormData(form_login);
+
+
     // envío de la petición
+    //name=usuario&password=0000&file
     peticionAjax.send(formData);
 
-    console.log(typeof formData.entries());
-    Debug.consolaObject(formData.entries());
+    console.log(formData);
+    // Debug.consolaObject(formData.entries());
 
 
 
