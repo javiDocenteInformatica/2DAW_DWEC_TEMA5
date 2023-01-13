@@ -87,8 +87,8 @@ function usa_XMLHttpRequest(form_login, div_respuesta_ajax) {
     // envío de la petición
     peticionAjax.send(formData);
 
-    console.log(formData);
-    // Debug.consolaObject(formData.entries());
+    console.log(typeof formData.entries());
+    Debug.consolaObject(formData.entries());
 
 
 
