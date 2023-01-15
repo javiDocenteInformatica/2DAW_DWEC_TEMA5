@@ -27,9 +27,9 @@ export function consolaObject(titulo, objeto) {
     if (objeto != null) {
         console.log(`%c ${titulo}`, "color: orange");
 
-        Object.entries().forEach(function (valor, clave, array) {
+        for (let [clave, valor] of Object.entries(objeto)) {
             console.log(`%c [${clave}] => ${valor}`, "color: #f1c0e8");
-        });
+        };
 
         console.log("\n");
     }

@@ -23,13 +23,16 @@ window.addEventListener("load", function (evento) {
 
 
         /** XMLHttpRequest **/
-        usa_XMLHttpRequest(form_login, div_respuesta_ajax);
+        // usa_XMLHttpRequest(form_login, div_respuesta_ajax);
 
         /** FETCH - THEN - CATCH **/
         // usa_fetch_form(form_login, div_respuesta_ajax);
         // usa_fetch_json(form_login, div_respuesta_ajax);
 
         /** ASYNC - AWAIT **/
+        usa_async_await(form_login, div_respuesta_ajax)
+
+
     });
 
 });
@@ -100,57 +103,39 @@ function usa_XMLHttpRequest(form_login, div_respuesta_ajax) {
 // FETCH
 function usa_fetch_form(form_login, div_respuesta_ajax) {
 
-    /*
+
     // Fetch API : https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-    fetch(url, {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        mode: 'cors', // no-cors, *cors, same-origin
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'same-origin', // include, *same-origin, omit
-        headers: {
-          'Content-Type': 'application/json'
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        redirect: 'follow', // manual, *follow, error
-        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify(data) // body data type must match "Content-Type" header
-      });
-      */
-
     // FormData API: https://developer.mozilla.org/es/docs/Web/API/FormData
-    let formulario = new FormData(form_login);
-    consolaObject(formulario); // Es un: object 'FormData'
 
 
-    fetch(p_url, {
-        method: p_metodo,
+    let formData = new FormData(form_login);
+    // Debug.consolaObject("form_login", form_login);
+
+    let opciones = {
+        method: form_login.method,
         /*headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },*/
-        body: formulario
-    })
+        body: formData
+    };
+
+    fetch(form_login.action, opciones)
         .then(function (response) {
-            if (!response.ok) { // Si hubo un problema en la respuesta desde el SERVIDOR
-                throw new Error(`
-                <h3>Status:</h3>
-                <p>${response.status}</p>
-                <h3> Status Text:</h3>
-                <p>${response.statusText}</p>
-                `);
-            } else {
-                console.log(response); // Es un: object 'Response'
-
+            if (response.status == 200) { // Si la respuesta del servidor es correcta
                 return response.text();
+            } else {
+                window.location.href = "./vista/Error404.html";
+                return "";
             }
-
 
         })
         .then(function (datos) {
-            consolaText(datos); // Es un: string
-            p_htmlRespuesta.innerHTML += `<p>${datos}</p>`;
+            // Debug.consolaText(datos); // Es un: string
+            div_respuesta_ajax.innerHTML = datos;
         })
         .catch(function (error) {
-            p_htmlRespuesta.innerHTML += `<p>${error}</p>`;
+
+            div_respuesta_ajax.innerHTML = error;
         })
         ;
 
@@ -161,22 +146,8 @@ function usa_fetch_form(form_login, div_respuesta_ajax) {
 
 function usa_fetch_json(form_login, div_respuesta_ajax) {
 
-    /*
     // Fetch API : https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-    fetch(url, {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        mode: 'cors', // no-cors, *cors, same-origin
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'same-origin', // include, *same-origin, omit
-        headers: {
-          'Content-Type': 'application/json'
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        redirect: 'follow', // manual, *follow, error
-        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify(data) // body data type must match "Content-Type" header
-      });
-      */
+    // FormData API: https://developer.mozilla.org/es/docs/Web/API/FormData
 
     let formData = new FormData(form_login);
 
@@ -220,8 +191,69 @@ function usa_fetch_json(form_login, div_respuesta_ajax) {
 
 
 // ASYNC - AWAIT
-function usa_async_await() {
+async function usa_async_await(form_login, div_respuesta_ajax) {
 
+    // Fetch API : https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+    // FormData API: https://developer.mozilla.org/es/docs/Web/API/FormData
+    // Promise API: https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Promise
+    // Response API: https://developer.mozilla.org/es/docs/Web/API/Response
+    // Request API: https://developer.mozilla.org/es/docs/Web/API/Request
+
+
+
+    let formData = new FormData(form_login);
+
+    let opciones = {
+        method: form_login.method,
+        /*headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },*/
+        body: formData
+    };
+
+    try {
+        let response = await fetch(form_login.action, opciones); // Recibo un objeto 'Response' que estará listo cuando la respuesta del servidor sea recibida; fetch(...) devuelve una 'Promise<Response>'
+        if (response.status != 200) {
+            throw new Error(`${response.status} - ${response.statusText}`)
+        }
+        let datosRecibidos = await response.text(); // Recibo la respuesta del objeto 'response' cuando esté lista la promesa; response.text() devuelve una 'Promise<string>'
+        div_respuesta_ajax.innerHTML = datosRecibidos;
+    } catch (error) {
+        console.error(error);
+        let response = await fetch("./vista/Error404.html");
+        let datos = await response.text();
+        div_respuesta_ajax.innerHTML = datos;
+    }
+
+
+
+
+};
+
+
+
+/*
+.then(function (response) {
+        if (response.status == 200) { // Si la respuesta del servidor es correcta
+            return response.text();
+        } else {
+            window.location.href = "./vista/Error404.html";
+            return "";
+        }
+
+    })
+    .then(function (datos) {
+        // Debug.consolaText(datos); // Es un: string
+        div_respuesta_ajax.innerHTML = datos;
+    })
+    .catch(function (error) {
+
+        div_respuesta_ajax.innerHTML = error;
+    })
+    ;
 }
+*/
+
+
 
 
