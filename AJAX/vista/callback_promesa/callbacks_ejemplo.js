@@ -5,7 +5,7 @@ function operacion(num1, num2, op) {
     respuesta = op(num1, num2);
     if (respuesta != null) {
         console.log(respuesta);
-        clearInterval(this);
+        // clearInterval(this);
     } else {
         console.log("respuesta aún no está");
     }
