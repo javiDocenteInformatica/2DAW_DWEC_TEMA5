@@ -21,16 +21,18 @@ window.addEventListener("load", function (evento) {
         // previene que se envíe el formulario por defecto al pulsar 'submit'
         evento.preventDefault();
 
+        if (true) {
+            /** XMLHttpRequest **/
+            usa_XMLHttpRequest(this, div_respuesta_ajax);
+        }
 
-        /** XMLHttpRequest **/
-        // usa_XMLHttpRequest(form_login, div_respuesta_ajax);
 
         /** FETCH - THEN - CATCH **/
         // usa_fetch_form(form_login, div_respuesta_ajax);
         // usa_fetch_json(form_login, div_respuesta_ajax);
 
         /** ASYNC - AWAIT **/
-        usa_async_await(form_login, div_respuesta_ajax)
+        // usa_async_await(form_login, div_respuesta_ajax)
 
 
     });
@@ -42,11 +44,11 @@ window.addEventListener("load", function (evento) {
 function usa_XMLHttpRequest(form_login, div_respuesta_ajax) {
 
     /* CREACIÓN DE OBJETO AJAX */
-    let peticionAjax = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
 
 
     /* MODO ESCUCHA - DEBE HACERSE ANTES DE ENVIAR LA PETICIÓN */
-    peticionAjax.addEventListener("readystatechange", function () {
+    xhr.addEventListener("readystatechange", function () {
 
 
 
@@ -71,7 +73,7 @@ function usa_XMLHttpRequest(form_login, div_respuesta_ajax) {
     });
 
     /* CONFIGURACIÓN DE LA PETICIÓN */
-    peticionAjax.open(form_login.method, form_login.action, true /* async=true */
+    xhr.open(form_login.method, form_login.action, true /* async=true */
     );
 
 
@@ -84,11 +86,11 @@ function usa_XMLHttpRequest(form_login, div_respuesta_ajax) {
     // PHP Headers: https://www.geeksforgeeks.org/http-headers-content-type/
     // FormData: https://developer.mozilla.org/es/docs/Web/API/FormData
     let formData = new FormData(form_login);
-
+    console.log(formData);
 
     // envío de la petición
     //name=usuario&password=0000&file
-    peticionAjax.send(formData);
+    xhr.send(formData);
 
     console.log(formData);
     // Debug.consolaObject(formData.entries());
