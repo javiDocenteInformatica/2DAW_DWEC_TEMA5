@@ -34,6 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     }
 
+    // CREAR OBJETO JSON
+
+    // GUARDAR FICHERO EN SERVIDOR
+
 
 
 }
