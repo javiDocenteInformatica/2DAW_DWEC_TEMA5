@@ -8,7 +8,7 @@ require_once("./CVClass.php");
 
 class UsuarioClass
 {
-    public $idUsuario;
+    public static $idUsuario = 0;
     public $email;
     public $nombreUsuario;
     public $password;
@@ -18,15 +18,17 @@ class UsuarioClass
 
     public $listaCVs; // Array de Objetos de tipo 'CVClass'
 
-    public function __construct($idUsuario, $email, $nombreUsuario, $password, $hash, $esActivo, $esAdmin)
+    public function __construct($email, $nombreUsuario, $password, $hash, $esActivo, $esAdmin)
     {
-        $this->idUsuario = $idUsuario;
         $this->email = $email;
         $this->nombreUsuario = $nombreUsuario;
         $this->password = $password;
         $this->hash = $hash;
         $this->esActivo = $esActivo;
         $this->esAdmin = $esAdmin;
+
+        // incrementa id +1
+        self::$idUsuario++;
     }
 }
 
