@@ -4,7 +4,7 @@ if(session_status() <> PHP_SESSION_ACTIVE){
 }
 // IMPORTS
 // include_once("../depuracion.php");
-require_once('../../modelo/entidades/UsuarioClass.php');
+require ('../../modelo/entidades/UsuarioClass.php');
 
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -19,7 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $esAdmin = $_POST['esAdmin'];
 
     if(!password_verify($password, $hash)){
-        die("No se ha podido verificar la password, saliendo de la aplicación web...");
+        session_destroy(); // destruyo la session
+
+        die("No se ha podido verificar la password, saliendo de la aplicación web..."); // termino la aplicación y mando un mensaje
     }
 
     $usuario = new UsuarioClass($email, $nombreUsuario,$password,$hash,$esActivo,$esAdmin);
