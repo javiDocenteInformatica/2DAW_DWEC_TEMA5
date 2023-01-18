@@ -1,4 +1,9 @@
 <?php
+// IMPORTS
+include_once('../../controlador\utiles\utiles.php');
+?>
+
+<?php
 if(session_status() <> PHP_SESSION_ACTIVE){
     session_start();
 }
@@ -33,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     //     echo $hash;
     // }
 
+    // CREAR OBJETO PHP
     $usuario = new UsuarioClass($email, $nombreUsuario,$password,$hash,$esActivo,$esAdmin);
 
     $datosPersonales = new DatosPersonalesClass($usuario->idUsuario, "Pepe", "Moreno Delgado", new DateTime('now'), "C/ Agua 8", "Marchena", "Sevilla", "666777888");
@@ -41,11 +47,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     array_push($usuario->listaCVs, $cv); 
 
-    // CREAR OBJETO JSON
     $listaUsuarios = array(); // lista que será almacenada en el fichero
-    $listaUsuarios[] = $usuario;
+    $listaUsuarios[] = $usuario; // hace lo mismo que array_push
+    
 
 
+    // CREAR OBJETO JSON
     // https://www.php.net/manual/en/function.json-encode.php
     $listaUsuariosJSON = json_encode($listaUsuarios, JSON_PRETTY_PRINT);
 

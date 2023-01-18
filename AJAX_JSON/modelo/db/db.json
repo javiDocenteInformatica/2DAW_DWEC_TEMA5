@@ -2,9 +2,9 @@
     {
         "idUsuario": 1,
         "email": "aa@gmail.com",
-        "nombreUsuario": "aaa",
-        "password": "\u00f1\u00f1\u00f1",
-        "hash": "$2y$10$QqEyXmBhnrhcuzg2hq\/4R.2LpWomWU1eoMXE8JMMABeU6DHV30TuW",
+        "nombreUsuario": "aa",
+        "password": "\u00f1\u00f1",
+        "hash": "$2y$10$OqNhc\/X4H6UCmO38f1wZ7u8RHcz.uWICjDTQGhDaAN3D.ayNaVlR6",
         "esActivo": "0",
         "esAdmin": "0",
         "listaCVs": [
@@ -13,12 +13,12 @@
                 "idUsuario": 1,
                 "tituloDescriptivo": "Mi CV 1",
                 "fechaCreacion": {
-                    "date": "2023-01-18 12:36:51.463356",
+                    "date": "2023-01-18 16:54:36.790946",
                     "timezone_type": 3,
                     "timezone": "Europe\/Berlin"
                 },
                 "fechaActualizacion": {
-                    "date": "2023-01-18 12:36:51.463357",
+                    "date": "2023-01-18 16:54:36.790947",
                     "timezone_type": 3,
                     "timezone": "Europe\/Berlin"
                 },
@@ -28,7 +28,7 @@
                     "nombre": "Pepe",
                     "apellidos": "Moreno Delgado",
                     "fechaNacimiento": {
-                        "date": "2023-01-18 12:36:51.463352",
+                        "date": "2023-01-18 16:54:36.790942",
                         "timezone_type": 3,
                         "timezone": "Europe\/Berlin"
                     },
