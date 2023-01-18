@@ -4,6 +4,7 @@
 
 class DatosPersonalesClass
 {
+    public static $contDatosPersonales = 0;
     public $idDatosPersonales;
     public $idUsuario;
     public $nombre;
@@ -14,9 +15,8 @@ class DatosPersonalesClass
     public $ciudad;
     public $telefono;
 
-    public function __construct($idDatosPersonales, $idUsuario, $nombre, $apellidos, $fechaNacimiento, $direccion, $poblacion, $ciudad, $telefono)
+    public function __construct($idUsuario, $nombre, $apellidos, $fechaNacimiento, $direccion, $poblacion, $ciudad, $telefono)
     {
-        $this->idDatosPersonales = $idDatosPersonales;
         $this->idUsuario = $idUsuario;
         $this->nombre = $nombre;
         $this->apellidos = $apellidos;
@@ -25,6 +25,11 @@ class DatosPersonalesClass
         $this->direccion = $poblacion;
         $this->ciudad = $ciudad;
         $this->telefono = $telefono;
+
+        self::$contDatosPersonales++; // valor autoincremental
+
+        // asigna id a datos personales
+        $this->idDatosPersonales = self::$contDatosPersonales;
     }
 }
 

@@ -35,12 +35,26 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $usuario = new UsuarioClass($email, $nombreUsuario,$password,$hash,$esActivo,$esAdmin);
 
+    $datosPersonales = new DatosPersonalesClass($usuario->idUsuario, "Pepe", "Moreno Delgado", new DateTime('now'), "C/ Agua 8", "Marchena", "Sevilla", "666777888");
+
+    $cv = new CVClass($usuario->idUsuario, "Mi CV 1",new DateTime('now'),new DateTime('now'),$datosPersonales,array(),array());
+
+    array_push($usuario->listaCVs, $cv); 
+
     // CREAR OBJETO JSON
-    
+    $listaUsuarios = array(); // lista que será almacenada en el fichero
+    $listaUsuarios[] = $usuario;
+
+
+    // https://www.php.net/manual/en/function.json-encode.php
+    $listaUsuariosJSON = json_encode($listaUsuarios, JSON_PRETTY_PRINT);
 
 
     // GUARDAR FICHERO EN SERVIDOR
-
+    //https://ejemplocodigo.com/ejemplo-php-crear-y-leer-archivo-json/
+    $nombreFichero = 'db.json';
+    $rutaFichero = '../../modelo/db/' . $nombreFichero;
+    file_put_contents($rutaFichero, $listaUsuariosJSON);
 
 
 }
@@ -53,8 +67,3 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 include_once('../listarDatosUsuario.php');
 
 ?>
-
-
-<!-- VISTA -->
-<br>
-<button onclick="window.location.href='http://localhost/2DAW_DWEC_TEMA5/AJAX/controlador/listarDatosUsuario.php'">Muestra datos de mi usuario</button>

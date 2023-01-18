@@ -8,7 +8,8 @@ require_once("CVClass.php");
 
 class UsuarioClass
 {
-    public static $idUsuario = 0;
+    public static $contUsuario = 0;
+    public $idUsuario;
     public $email;
     public $nombreUsuario;
     public $password;
@@ -28,7 +29,13 @@ class UsuarioClass
         $this->esAdmin = $esAdmin;
 
         // incrementa id +1
-        self::$idUsuario++;
+        self::$contUsuario++;
+
+        // asigna id al usuario
+        $this->idUsuario = self::$contUsuario;
+
+        // inicializamos a vacía la lista de CVs
+        $this->listaCVs = array();
     }
 }
 
