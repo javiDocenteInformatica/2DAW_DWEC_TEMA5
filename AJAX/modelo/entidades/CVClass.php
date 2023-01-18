@@ -1,9 +1,9 @@
 <?php
 // IMPORTACIONES
-require_once("./DatosPersonalesClass.php");
-require_once("./EstudiosClass.php");
-require_once("./ExperienciaClass.php");
-require_once("./DatosPersonalesClass.php");
+require_once("DatosPersonalesClass.php");
+require_once("EstudiosClass.php");
+require_once("ExperienciaClass.php");
+
 
 // Programación orientada a objetos en PHP: https://diego.com.es/programacion-orientada-a-objetos-en-php
 // Declaraciones de tipo: https://www.php.net/manual/es/language.types.declarations.php

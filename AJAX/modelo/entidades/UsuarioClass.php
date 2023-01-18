@@ -1,6 +1,6 @@
 <?php
 // IMPORTACIONES
-require_once("./CVClass.php");
+require_once("CVClass.php");
 
 
 // Programación orientada a objetos en PHP: https://diego.com.es/programacion-orientada-a-objetos-en-php
