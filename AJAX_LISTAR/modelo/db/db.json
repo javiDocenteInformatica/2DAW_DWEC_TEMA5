@@ -1,0 +1,45 @@
+[
+    {
+        "idUsuario": 1,
+        "email": "aa@gmail.com",
+        "nombreUsuario": "aa",
+        "password": "\u00f1\u00f1",
+        "hash": "$2y$10$OqNhc\/X4H6UCmO38f1wZ7u8RHcz.uWICjDTQGhDaAN3D.ayNaVlR6",
+        "esActivo": "0",
+        "esAdmin": "0",
+        "listaCVs": [
+            {
+                "idCV": 1,
+                "idUsuario": 1,
+                "tituloDescriptivo": "Mi CV 1",
+                "fechaCreacion": {
+                    "date": "2023-01-18 16:54:36.790946",
+                    "timezone_type": 3,
+                    "timezone": "Europe\/Berlin"
+                },
+                "fechaActualizacion": {
+                    "date": "2023-01-18 16:54:36.790947",
+                    "timezone_type": 3,
+                    "timezone": "Europe\/Berlin"
+                },
+                "datosPersonales": {
+                    "idDatosPersonales": 1,
+                    "idUsuario": 1,
+                    "nombre": "Pepe",
+                    "apellidos": "Moreno Delgado",
+                    "fechaNacimiento": {
+                        "date": "2023-01-18 16:54:36.790942",
+                        "timezone_type": 3,
+                        "timezone": "Europe\/Berlin"
+                    },
+                    "direccion": "Marchena",
+                    "poblacion": null,
+                    "ciudad": "Sevilla",
+                    "telefono": "666777888"
+                },
+                "listaEstudios": [],
+                "listaExperiencias": []
+            }
+        ]
+    }
+]
