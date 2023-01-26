@@ -19,11 +19,9 @@
 
 <body>
     <!-- AQUI EL CÓDIGO HTML PRINCIPAL -->
-    <div class="itemPrincipal">
-        <?php
-        include_once("vista/registro/vista_registro.php");
-        ?>
-    </div>
+    <?php
+    include_once('vista/vista_listar.php');
+    ?>
 </body>
 
 </html>
